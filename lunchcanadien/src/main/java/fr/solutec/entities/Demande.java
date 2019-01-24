@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Demande {
 	@Id @GeneratedValue
-	private int idDemande;
+	private Long idDemande;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Event idEvent;
 	private Date dateDebut;
@@ -19,7 +19,7 @@ public class Demande {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private User idUser;
 	
-	public Demande(int idDemande, Event idEvent, Date dateDebut, Date dateFin, User idUser) {
+	public Demande(Long idDemande, Event idEvent, Date dateDebut, Date dateFin, User idUser) {
 		super();
 		this.idDemande = idDemande;
 		this.idEvent = idEvent;
@@ -32,10 +32,10 @@ public class Demande {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getIdDemande() {
+	public Long getIdDemande() {
 		return idDemande;
 	}
-	public void setIdDemande(int idDemande) {
+	public void setIdDemande(Long idDemande) {
 		this.idDemande = idDemande;
 	}
 	public Event getIdEvent() {

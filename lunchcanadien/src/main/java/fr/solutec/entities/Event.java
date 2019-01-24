@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Event {
 	@Id @GeneratedValue
-	private int idEvent;
+	private Long idEvent;
 	private int nbUser;
 	@CreationTimestamp
 	private Date dateDebut;
@@ -23,7 +23,7 @@ public class Event {
 	@OneToMany
 	private List<Demande> demande;
 	
-	public Event(int idEvent, int nbUser, Date dateDebut, Date dateFin, boolean status, List<Demande> demande) {
+	public Event(Long idEvent, int nbUser, Date dateDebut, Date dateFin, boolean status, List<Demande> demande) {
 		super();
 		this.idEvent = idEvent;
 		this.nbUser = nbUser;
@@ -38,10 +38,10 @@ public class Event {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getIdEvent() {
+	public Long getIdEvent() {
 		return idEvent;
 	}
-	public void setIdEvent(int idEvent) {
+	public void setIdEvent(Long idEvent) {
 		this.idEvent = idEvent;
 	}
 	public int getNbUser() {
