@@ -8,7 +8,6 @@ import javax.persistence.Id;
 
 @Entity
 public class User implements Serializable {
-	
 	@Id @GeneratedValue
 	private Long idUser;
 	private String nom;
@@ -16,6 +15,16 @@ public class User implements Serializable {
 	private String mail;
 	private String mdp;
 	private String entreprise;
+	
+	public User(Long idUser, String nom, String prenom, String mail, String mdp, String entreprise) {
+		super();
+		this.idUser = idUser;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.entreprise = entreprise;
+	}
 	
 	public User( String nom, String mail) {
 		super();

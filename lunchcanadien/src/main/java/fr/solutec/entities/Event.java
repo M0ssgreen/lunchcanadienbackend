@@ -2,12 +2,32 @@ package fr.solutec.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+@Entity
 public class Event {
+	@Id @GeneratedValue
 	private int idEvent;
 	private int nbUser;
+	@CreationTimestamp
 	private Date dateDebut;
+	@CreationTimestamp
 	private Date dateFin;
-	private int status;
+	private boolean status;
+	
+	
+	public Event(int idEvent, int nbUser, Date dateDebut, Date dateFin, boolean status) {
+		super();
+		this.idEvent = idEvent;
+		this.nbUser = nbUser;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.status = status;
+	}
 	
 
 	public Event() {
@@ -39,10 +59,10 @@ public class Event {
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
-	public int getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 	

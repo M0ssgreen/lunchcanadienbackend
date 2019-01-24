@@ -9,7 +9,14 @@ public class Demande {
 	private Date dateFin;
 	private User idUser;
 	
-	
+	public Demande(int idDemande, Event idEvent, Date dateDebut, Date dateFin, User idUser) {
+		super();
+		this.idDemande = idDemande;
+		this.idEvent = idEvent;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.idUser = idUser;
+	}
 	
 	public Demande() {
 		super();
