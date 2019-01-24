@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable {
-	
 	@Id @GeneratedValue
 	private Long idUser;
 	private String nom;
@@ -18,9 +17,20 @@ public class User implements Serializable {
 	private String mail;
 	private String mdp;
 	private String entreprise;
-	
 	@OneToMany
 	private List<Demande> demande;
+	
+	public User(Long idUser, String nom, String prenom, String mail, String mdp, String entreprise,
+			List<Demande> demande) {
+		super();
+		this.idUser = idUser;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.entreprise = entreprise;
+		this.demande = demande;
+	}
 	
 	public User( String nom, String mail) {
 		super();
