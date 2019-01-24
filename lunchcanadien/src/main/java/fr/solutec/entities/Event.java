@@ -9,6 +9,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.OneToMany;
 @Entity
 public class Event {
@@ -16,8 +18,10 @@ public class Event {
 	private Long idEvent;
 	private int nbUser;
 	@CreationTimestamp
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date dateDebut;
 	@CreationTimestamp
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date dateFin;
 	private boolean status;
 	@OneToMany

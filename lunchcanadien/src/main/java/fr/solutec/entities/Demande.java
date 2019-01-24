@@ -8,13 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Demande {
 	@Id @GeneratedValue
 	private Long idDemande;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Event idEvent;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date dateDebut;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date dateFin;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private User idUser;
