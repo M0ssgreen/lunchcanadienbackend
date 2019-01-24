@@ -9,11 +9,6 @@ public class Event {
 	private Date dateFin;
 	private int status;
 	
-	public Event() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
 	public int getIdEvent() {
 		return idEvent;
 	}
