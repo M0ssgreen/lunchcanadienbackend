@@ -10,11 +10,12 @@ import javax.persistence.Id;
 public class User implements Serializable {
 	
 	@Id @GeneratedValue
-	private Long id;
+	private Long idUser;
 	private String nom;
 	private String prenom;
 	private String mail;
 	private String mdp;
+	private String entreprise;
 	
 	public User( String nom, String mail) {
 		super();
@@ -52,12 +53,12 @@ public class User implements Serializable {
 
 
 	public Long getId() {
-		return id;
+		return idUser;
 	}
 
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long idUser) {
+		this.idUser = idUser;
 	}
 
 
