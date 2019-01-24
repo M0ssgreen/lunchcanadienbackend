@@ -8,7 +8,7 @@ public class Event {
 	private Date dateDebut;
 	private Date dateFin;
 	private int status;
-	//test
+	
 	public int getIdEvent() {
 		return idEvent;
 	}
