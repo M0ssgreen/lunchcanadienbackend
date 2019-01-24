@@ -2,7 +2,13 @@ package fr.solutec.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Demande {
+	@Id @GeneratedValue
 	private int idDemande;
 	private Event idEvent;
 	private Date dateDebut;
