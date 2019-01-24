@@ -9,10 +9,13 @@ public class Event {
 	private Date dateFin;
 	private int status;
 	
+<<<<<<< HEAD
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/M0ssgreen/lunchcanadienbackend.git
 	public int getIdEvent() {
 		return idEvent;
 	}
