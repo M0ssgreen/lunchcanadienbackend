@@ -17,9 +17,11 @@ public class User implements Serializable {
 	private String mail;
 	private String mdp;
 	private String entreprise;
+	@OneToMany
+	private List<Demande> demande;
 	
-<<<<<<< HEAD
-	public User(Long idUser, String nom, String prenom, String mail, String mdp, String entreprise) {
+	public User(Long idUser, String nom, String prenom, String mail, String mdp, String entreprise,
+			List<Demande> demande) {
 		super();
 		this.idUser = idUser;
 		this.nom = nom;
@@ -27,11 +29,8 @@ public class User implements Serializable {
 		this.mail = mail;
 		this.mdp = mdp;
 		this.entreprise = entreprise;
+		this.demande = demande;
 	}
-=======
-	@OneToMany
-	private List<Demande> demande;
->>>>>>> branch 'master' of https://github.com/M0ssgreen/lunchcanadienbackend.git
 	
 	public User( String nom, String mail) {
 		super();

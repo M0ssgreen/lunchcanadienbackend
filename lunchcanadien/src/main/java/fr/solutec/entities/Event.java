@@ -1,6 +1,7 @@
 package fr.solutec.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.OneToMany;
 @Entity
 public class Event {
 	@Id @GeneratedValue
@@ -18,17 +20,18 @@ public class Event {
 	@CreationTimestamp
 	private Date dateFin;
 	private boolean status;
+	@OneToMany
+	private List<Demande> demande;
 	
-	
-	public Event(int idEvent, int nbUser, Date dateDebut, Date dateFin, boolean status) {
+	public Event(int idEvent, int nbUser, Date dateDebut, Date dateFin, boolean status, List<Demande> demande) {
 		super();
 		this.idEvent = idEvent;
 		this.nbUser = nbUser;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.status = status;
+		this.demande = demande;
 	}
-	
 
 	public Event() {
 		super();
