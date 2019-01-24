@@ -1,10 +1,12 @@
 package fr.solutec.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable {
@@ -16,6 +18,9 @@ public class User implements Serializable {
 	private String mail;
 	private String mdp;
 	private String entreprise;
+	
+	@OneToMany
+	private List<Demande> demande;
 	
 	public User( String nom, String mail) {
 		super();
