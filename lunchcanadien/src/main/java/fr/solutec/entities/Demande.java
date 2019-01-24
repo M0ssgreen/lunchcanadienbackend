@@ -19,6 +19,14 @@ public class Demande {
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private User idUser;
 	
+	
+	
+	public Demande(Date dateDebut, Date dateFin) {
+		super();
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+	}
+
 	public Demande(Long idDemande, Event idEvent, Date dateDebut, Date dateFin, User idUser) {
 		super();
 		this.idDemande = idDemande;

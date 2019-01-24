@@ -23,6 +23,16 @@ public class Event {
 	@OneToMany
 	private List<Demande> demande;
 	
+	
+	
+	public Event(int nbUser, Date dateDebut, Date dateFin, boolean status) {
+		super();
+		this.nbUser = nbUser;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.status = status;
+	}
+
 	public Event(Long idEvent, int nbUser, Date dateDebut, Date dateFin, boolean status, List<Demande> demande) {
 		super();
 		this.idEvent = idEvent;

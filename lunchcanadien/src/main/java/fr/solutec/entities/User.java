@@ -20,6 +20,17 @@ public class User implements Serializable {
 	@OneToMany
 	private List<Demande> demande;
 	
+	
+	
+	public User(String nom, String prenom, String mail, String mdp, String entreprise) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.mdp = mdp;
+		this.entreprise = entreprise;
+	}
+
 	public User(Long idUser, String nom, String prenom, String mail, String mdp, String entreprise,
 			List<Demande> demande) {
 		super();
