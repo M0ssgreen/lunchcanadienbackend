@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 public class Demande {
 	@Id @GeneratedValue
 	private int idDemande;
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Event idEvent;
 	private Date dateDebut;
 	private Date dateFin;

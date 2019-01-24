@@ -1,14 +1,23 @@
 package fr.solutec.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+@Entity
 public class Event {
+	@Id @GeneratedValue
 	private int idEvent;
 	private int nbUser;
 	private Date dateDebut;
 	private Date dateFin;
 	private int status;
 	
+	@OneToMany
+	private List<Demande> demande;
 
 	public Event() {
 		super();
