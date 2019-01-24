@@ -1,10 +1,12 @@
 package fr.solutec.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable {
@@ -16,6 +18,7 @@ public class User implements Serializable {
 	private String mdp;
 	private String entreprise;
 	
+<<<<<<< HEAD
 	public User(Long idUser, String nom, String prenom, String mail, String mdp, String entreprise) {
 		super();
 		this.idUser = idUser;
@@ -25,6 +28,10 @@ public class User implements Serializable {
 		this.mdp = mdp;
 		this.entreprise = entreprise;
 	}
+=======
+	@OneToMany
+	private List<Demande> demande;
+>>>>>>> branch 'master' of https://github.com/M0ssgreen/lunchcanadienbackend.git
 	
 	public User( String nom, String mail) {
 		super();

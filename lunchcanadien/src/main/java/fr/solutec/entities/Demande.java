@@ -2,11 +2,21 @@ package fr.solutec.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Demande {
+	@Id @GeneratedValue
 	private int idDemande;
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Event idEvent;
 	private Date dateDebut;
 	private Date dateFin;
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User idUser;
 	
 	public Demande(int idDemande, Event idEvent, Date dateDebut, Date dateFin, User idUser) {
