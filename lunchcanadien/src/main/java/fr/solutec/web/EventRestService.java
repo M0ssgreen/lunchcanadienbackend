@@ -1,5 +1,6 @@
 package fr.solutec.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.dao.EventRepository;
+import fr.solutec.web.DemandeRestService;
 import fr.solutec.dao.UserRepository;
+import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 
@@ -50,4 +53,18 @@ public class EventRestService {
 	public Event getEventById(@PathVariable Long id){
 		return eventRepo.findOne(id);
 	}
+	
+	/*@RequestMapping(value="/eventnonvalid/all/{id}", method=RequestMethod.GET)
+	public List<Event> getEventByDemandes(@PathVariable Long id){
+		List<Demande> dems = new DemandeRestService.getDemandeUser(id);
+		
+		List<Event> eventsresult = new ArrayList();
+		for (Demande dem:dems) {
+			eventsresult.add(dem.getIdEvent()) ;
+			}
+		
+		return eventsresult;
+	}*/
+	
+	
 }
