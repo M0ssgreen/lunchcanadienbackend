@@ -36,12 +36,12 @@ public class UserRestService {
 	
 	
 	
+	
 	@RequestMapping(value="/users/{id}", method=RequestMethod.PUT)
 	public User modifUser(@PathVariable Long id, @RequestBody User u){
 		 u.setId(id);
 		 return userRepo.save(u);
 	}
-	
 	
 	
 
