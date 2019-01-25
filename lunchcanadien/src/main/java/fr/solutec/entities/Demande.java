@@ -32,7 +32,7 @@ public class Demande {
 		this.dateFin = dateFin;
 	}
 
-	public Demande(Long idDemande, Event idEvent, Date dateDebut, Date dateFin, User user) {
+	public Demande(Long idDemande, Event idEvent, Date dateDebut, Date dateFin, boolean status, User user) {
 		super();
 		this.idDemande = idDemande;
 		this.event = idEvent;
@@ -41,6 +41,14 @@ public class Demande {
 		this.user = user;
 	}
 	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public Demande() {
 		super();
 		// TODO Auto-generated constructor stub
