@@ -24,7 +24,7 @@ public class UserRestService {
 		return userRepo.findAll();
 	}
 	
-	@RequestMapping(value="/user", method=RequestMethod.GET)
+	@RequestMapping(value="/users/{id}", method=RequestMethod.GET)
 	public User getUser(@PathVariable Long id){
 		return userRepo.findOne(id);
 	}
