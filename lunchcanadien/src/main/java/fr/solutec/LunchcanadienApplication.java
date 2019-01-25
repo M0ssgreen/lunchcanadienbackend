@@ -28,15 +28,10 @@ public class LunchcanadienApplication implements CommandLineRunner {
 
 	@Override //ajout de données dans la bdd user
 	public void run(String... args) throws Exception {
-<<<<<<< HEAD
-		userRepos.save(new User("toto", "jojo", "toto@gmail.com", "123456", "Solutec"));
-		//demandeRepos.save(new Demande ( Date(2018, 01, 24, 12, 00, 00), Date(2018, 01, 24, 14, 00, 00)));
-		//eventRepos.save(new Event(3, new Date(2018, 01, 24, 12, 00, 00), new Date(2018, 01, 24, 14, 00, 00), false));
-=======
+
 		//userRepos.save(new User("toto", "jojo", "toto@gmail.com", "123456", "Solutec"));
 		//demandeRepos.save(new Demande ( new Date(2018, 01, 24, 12, 00, 00), new Date(2018, 01, 24, 14, 00, 00)));
 		//eventRepos.save(new Event(3, Datetime(2018-01-24 12:00:00), new Date(2018, 01, 24, 14, 00, 00), false));
->>>>>>> branch 'master' of https://github.com/M0ssgreen/lunchcanadienbackend.git
 		
 	}
 
