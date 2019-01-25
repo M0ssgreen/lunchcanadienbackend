@@ -41,7 +41,7 @@ public class EventRestService {
 		 return eventRepo.save(e);
 	}
 	
-	@RequestMapping(value="/event", method=RequestMethod.GET)
+	@RequestMapping(value="/event/{id}", method=RequestMethod.GET)
 	public Event getEventById(@PathVariable Long id){
 		return eventRepo.findOne(id);
 	}
