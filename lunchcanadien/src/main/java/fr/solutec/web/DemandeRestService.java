@@ -1,5 +1,6 @@
 package fr.solutec.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,16 @@ public class DemandeRestService {
 		return demandeRepo.findOne(id);
 	}
 	
+	@RequestMapping(value="/demandeuser/{id}", method=RequestMethod.GET)
+	public List<Demande> getDemandeUser(@PathVariable Long id){
+		List<Demande> dems = demandeRepo.findAll();
+		List<Demande> demsresult = new ArrayList();
+		for (Demande dem:dems) {
+			if (dem.getIdUser().getId()==id) {
+				demsresult.add(dem);
+			}
+		}
+		return demsresult;
+	}
 
 }
