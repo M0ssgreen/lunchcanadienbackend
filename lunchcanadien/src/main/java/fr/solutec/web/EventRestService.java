@@ -32,7 +32,12 @@ public class EventRestService {
 		return eventRepo.save(e);
 	}
 	
-	
+	@RequestMapping(value="/events/{id}",method=RequestMethod.DELETE)
+	public boolean suppUser(@PathVariable Long id) {
+		
+		eventRepo.delete(id);
+		return true;
+	}
 	
 	
 	@RequestMapping(value="/events/{id}", method=RequestMethod.PUT)
