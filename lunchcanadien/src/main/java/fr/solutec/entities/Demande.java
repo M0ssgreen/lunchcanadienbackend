@@ -15,13 +15,14 @@ public class Demande {
 	@Id @GeneratedValue
 	private Long idDemande;
 	@ManyToOne(cascade=CascadeType.MERGE)
-	private Event idEvent;
+	private Event event;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date dateDebut;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
 	private Date dateFin;
+	private boolean status;
 	@ManyToOne(cascade=CascadeType.MERGE)
-	private User idUser;
+	private User user;
 	
 	
 	
@@ -31,13 +32,13 @@ public class Demande {
 		this.dateFin = dateFin;
 	}
 
-	public Demande(Long idDemande, Event idEvent, Date dateDebut, Date dateFin, User idUser) {
+	public Demande(Long idDemande, Event idEvent, Date dateDebut, Date dateFin, User user) {
 		super();
 		this.idDemande = idDemande;
-		this.idEvent = idEvent;
+		this.event = idEvent;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.idUser = idUser;
+		this.user = user;
 	}
 	
 	public Demande() {
@@ -51,10 +52,10 @@ public class Demande {
 		this.idDemande = idDemande;
 	}
 	public Event getIdEvent() {
-		return idEvent;
+		return event;
 	}
-	public void setIdEvent(Event idEvent) {
-		this.idEvent = idEvent;
+	public void setIdEvent(Event event) {
+		this.event = event;
 	}
 	public Date getDateDebut() {
 		return dateDebut;
@@ -68,11 +69,11 @@ public class Demande {
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
-	public User getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
-	public void setIdUser(User idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	
