@@ -50,7 +50,17 @@ public class DemandeRestService {
 		return demsresult;
 	}
 	
+	@RequestMapping(value="/demande/valid/{id}", method=RequestMethod.PUT)
+	public Demande modifUser(@RequestBody Demande dem) {
+		dem.setStatus(true);
+		return demandeRepo.save(dem);
+	}
 	
+	@RequestMapping(value="/demande/supr/{id}", method=RequestMethod.DELETE)
+	public boolean deleteDemande(@PathVariable Demande dem) {
+		demandeRepo.delete(dem.getIdDemande());
+		return true;
+	}
 	
 	
 
