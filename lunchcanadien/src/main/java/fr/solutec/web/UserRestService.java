@@ -2,8 +2,6 @@ package fr.solutec.web;
 
 import java.util.List;
 
-import java.util.Optional;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +24,11 @@ public class UserRestService {
 	@RequestMapping(value="/users", method=RequestMethod.GET)
 	public List<User> getUsers(){
 		return userRepo.findAll();
+	}
+	
+	@RequestMapping(value="/users/{id}", method=RequestMethod.GET)
+	public User getUser(@PathVariable Long id){
+		return userRepo.findOne(id);
 	}
 	
 

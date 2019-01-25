@@ -1,5 +1,6 @@
 package fr.solutec.entities;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +19,10 @@ public class Event {
 	private Long idEvent;
 	private int nbUser;
 	@CreationTimestamp
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date dateDebut;
 	@CreationTimestamp
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date dateFin;
 	private boolean status;
 	@OneToMany
