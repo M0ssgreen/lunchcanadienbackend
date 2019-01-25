@@ -33,7 +33,7 @@ public class DemandeRestService {
 	
 
 	@RequestMapping(value="/demandes", method=RequestMethod.POST)
-	public Demande saveDemande( Demande d) {
+	public Demande saveDemande(Demande d) {
 		return demandeRepo.save(d);
 	}
 	
