@@ -16,9 +16,9 @@ public class Demande {
 	private Long idDemande;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Event event;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date dateDebut;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date dateFin;
 	private boolean status;
 	@ManyToOne(cascade=CascadeType.MERGE)
