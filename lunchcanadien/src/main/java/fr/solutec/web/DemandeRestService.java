@@ -56,10 +56,16 @@ public class DemandeRestService {
 		return demandeRepo.save(dem);
 	}
 	
-	@RequestMapping(value="/demande/supr/{id}", method=RequestMethod.DELETE)
+	/**@RequestMapping(value="/demande/supr/{id}", method=RequestMethod.DELETE)
 	public boolean deleteDemande(@PathVariable Demande dem) {
 		demandeRepo.delete(dem.getIdDemande());
 		return true;
+	}*/
+	
+	@RequestMapping(value="/demandes/{id}", method=RequestMethod.DELETE)
+	public boolean suppDemande(@PathVariable Long id){
+		 demandeRepo.delete(id);
+		 return true;
 	}
 	
 	
