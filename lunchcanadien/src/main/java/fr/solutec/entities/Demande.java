@@ -12,68 +12,34 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Demande {
-	@Id @GeneratedValue
-	private Long idDemande;
 	@ManyToOne(cascade=CascadeType.MERGE)
-	private Event idEvent;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
-	private Date dateDebut;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
-	private Date dateFin;
+	private Event event;
 	@ManyToOne(cascade=CascadeType.MERGE)
-	private User idUser;
-	
-	
-	
-	public Demande(Date dateDebut, Date dateFin) {
-		super();
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-	}
-
-	public Demande(Long idDemande, Event idEvent, Date dateDebut, Date dateFin, User idUser) {
-		super();
-		this.idDemande = idDemande;
-		this.idEvent = idEvent;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.idUser = idUser;
-	}
-	
+	private User user;
 	public Demande() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Long getIdDemande() {
-		return idDemande;
+	public Demande(Event event, User user) {
+		super();
+		this.event = event;
+		this.user = user;
 	}
-	public void setIdDemande(Long idDemande) {
-		this.idDemande = idDemande;
+	public Event getEvent() {
+		return event;
 	}
-	public Event getIdEvent() {
-		return idEvent;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
-	public void setIdEvent(Event idEvent) {
-		this.idEvent = idEvent;
+	public User getUser() {
+		return user;
 	}
-	public Date getDateDebut() {
-		return dateDebut;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-	public Date getDateFin() {
-		return dateFin;
-	}
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
-	public User getIdUser() {
-		return idUser;
-	}
-	public void setIdUser(User idUser) {
-		this.idUser = idUser;
-	}
+	
+
+
 	
 	
 
