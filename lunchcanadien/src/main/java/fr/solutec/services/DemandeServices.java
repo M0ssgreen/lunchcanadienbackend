@@ -1,6 +1,8 @@
 package fr.solutec.services;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,33 +20,49 @@ import fr.solutec.dao.DemandeRepository;
 public class DemandeServices {
 	
 	@Autowired
-	private static DemandeRepository demandeRepo;
+	private DemandeRepository demandeRepo;
 	
 	
-	public static void matchEvent(String mail, Date date, String prenom, String nom, String entreprise) {
+	public void matchEvent(Demande d) {
+		String mail = d.getUser().getMail();
+		String prenom = d.getUser().getPrenom();
+		String nom = d.getUser().getNom();
+		String entreprise = d.getUser().getEntreprise();
+		Date date = d.getEvent().getDate();
+		
+		
+		
+		List<User> lstUser = new ArrayList();
+		List<Event> lstEvent = new ArrayList();
 		User user = new User();
-		user=UserServices.getIdByMail(mail);
+		UserServices userS = new UserServices();
+		EventServices eventS = new EventServices();
+		lstUser=userS.getIdByMail(mail);
+		lstEvent = eventS.getIdByDate(date);
 		Event event = new Event();
-		event = EventServices.getIdByDate(date);
-		if (user==null) {
+		
+		if (lstUser==null) {
 			user.setMail(mail);
 			user.setEntreprise(entreprise);
 			user.setNom(nom);
 			user.setPrenom(prenom);
-			user = UserServices.createUser(user);
-			user=UserServices.getIdByMail(mail);
+			user = userS.createUser(user);
+			lstUser=userS.getIdByMail(mail);
+			
 			
 		}
-		if (event==null) {
+		user=lstUser.get(0);
+		if (lstEvent==null) {
 			event.setDate(date);
-			event = EventServices.createEvent(event);
-			event = EventServices.getIdByDate(date);
+			event = eventS.createEvent(event);
+			lstEvent = eventS.getIdByDate(date);
 		}
+		event=lstEvent.get(0);
 		Demande demande = new Demande(event, user);
 		createDemande(demande);
 		
 	}
-	public static void createDemande(Demande demande) {
+	public void createDemande(Demande demande) {
 		demandeRepo.save(demande);
 	}
 	

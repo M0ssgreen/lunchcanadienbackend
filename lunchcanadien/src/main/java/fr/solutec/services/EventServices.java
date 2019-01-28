@@ -16,29 +16,37 @@ import fr.solutec.entities.User;
 @Service
 public class EventServices {
 	@Autowired
-	private static EventRepository eventRepository;
+	private EventRepository eventRepository;
 	@Autowired
 	private DemandeRepository demandes;
 	@Autowired
 	private UserRepository userRepository;
 	public List<Event> eventByMail(String mail){
-		List<Event> eventByMail = eventRepository.findAll();
+		List<Event> eventFromMail = eventRepository.findAll();
 		List<Demande> demandeAll = demandes.findAll();
-		User user = userRepository.findByMail(mail);
+		User user = userRepository.findByMail(mail).get(0);
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
-				eventByMail.add(eventRepository.findOne(demande.getEvent().getIdEvent()));
+				eventFromMail.add(eventRepository.findOne(demande.getEvent().getIdEvent()));
 			}
 		}
-		return eventByMail;
+		return eventFromMail;
 	}
 	
-	public static Event getIdByDate(Date dateEvent) {
+	public List<Event> getIdByDate(Date dateEvent) {
+		/*List<Event> listEvent = eventRepository.findAll();
+		Event retour = null;
+		for (Event event : listEvent) {
+			if (dateEvent.equals(event.getDate())) {
+				retour=event;
+			}
+		}
+		return retour;*/
 		return eventRepository.findByDate(dateEvent);
 	}
 	
-	public static Event createEvent(Event event) {
+	public Event createEvent(Event event) {
 		
 		return eventRepository.save(event);
 	}		

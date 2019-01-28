@@ -1,5 +1,6 @@
 package fr.solutec.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.expression.Lists;
 
 import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.User;
@@ -22,7 +25,12 @@ public class UserRestService {
 	private UserRepository userRepo;
 	
 	@RequestMapping(value="/users", method=RequestMethod.GET)
-	public List<User> getUsers(){
+	public List<User> getUsers(@RequestParam("email") String email){
+		if (email != null) {
+			
+			return this.userRepo.findByMail(email);
+			
+		}
 		return userRepo.findAll();
 	}
 	

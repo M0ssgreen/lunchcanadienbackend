@@ -18,6 +18,8 @@ import fr.solutec.email.MailServices;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
+
+import fr.solutec.services.EventServices;
 import fr.solutec.services.DemandeServices;
 
 @RestController
@@ -41,8 +43,9 @@ public class EventRestService {
 	}*/
 	
 	@RequestMapping(value="/events", method=RequestMethod.POST)
-	public void saveEvent(@RequestBody Event e, User u){
-		DemandeServices.matchEvent(u.getMail(),e.getDate(),u.getPrenom(), u.getNom(), u.getEntreprise());
+	public void saveEvent(@RequestBody Demande d){
+		DemandeServices demandeS = new DemandeServices();
+		demandeS.matchEvent(d);
 		
 	}
 	
@@ -81,6 +84,13 @@ public class EventRestService {
 	public Event getEventById(@PathVariable Long id){
 		return eventRepo.findOne(id);
 	}
+	
+	@RequestMapping(value="/eventvalide/{mail}", method=RequestMethod.GET)
+	public List<Event> getEventByMail(@PathVariable String mail){
+		EventServices eventServices = new EventServices();
+		return eventServices.eventByMail(mail);
+	}
+	
 	
 	/*@RequestMapping(value="/eventnonvalid/all/{id}", method=RequestMethod.GET)
 	public List<Event> getEventByDemandes(@PathVariable Long id){

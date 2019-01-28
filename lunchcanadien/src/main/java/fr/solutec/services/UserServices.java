@@ -12,20 +12,34 @@ import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 import fr.solutec.web.*;
+import groovyjarjarasm.asm.util.Printer;
 
 @Service
 public class UserServices {
 	
 	@Autowired
-	private static UserRepository userRepo;
+	private UserRepository userRepo;
 	
 	
-	public static User getIdByMail(String mail) {
+	public List<User> getIdByMail(String mail) {
+		/*List<User> listUser = userRepo.findAll();
+		User retour = null;
+		for (User user : listUser) {
+			if (mail.equals(user.getMail())) {
+				retour=user;
+			}
+		}
+		return retour;*/
+	
+		System.out.println(mail);
+
+
 		return userRepo.findByMail(mail);
+
 		
 	}
 	
-public static User createUser(User user) {
+public User createUser(User user) {
 		
 		return userRepo.save(user);
 	}
