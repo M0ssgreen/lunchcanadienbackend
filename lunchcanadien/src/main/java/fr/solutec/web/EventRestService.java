@@ -41,7 +41,8 @@ public class EventRestService {
 	@RequestMapping(value="/events", method=RequestMethod.POST)
 	public void saveEvent(@RequestBody Demande d){
 
-		DemandeServices.matchEvent(d);
+		DemandeServices demandeS = new DemandeServices();
+		demandeS.matchEvent(d);
 
 		
 	}

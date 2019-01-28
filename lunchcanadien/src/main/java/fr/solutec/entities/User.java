@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user")
 public class User implements Serializable {
 	@Id @GeneratedValue
 	private Long idUser;
@@ -22,6 +24,9 @@ public class User implements Serializable {
 	@OneToMany
 	private List<Demande> demande;
 		
+	public User() {
+		super();
+	}
 	public User(String nom, String prenom, String mail, String mdp, String entreprise) {
 		super();
 		this.nom = nom;
@@ -66,16 +71,6 @@ public class User implements Serializable {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-
-
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
-	
-
 
 	public String getEntreprise() {
 		return entreprise;
