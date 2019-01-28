@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.dao.DemandeRepository;
+import fr.solutec.dao.EventRepository;
+import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Demande;
 
 @RestController
@@ -20,6 +22,8 @@ public class DemandeRestService {
 	
 	@Autowired
 	private DemandeRepository demandeRepo;
+	private UserRepository userRepo;
+	private EventRepository eventRepo;
 	
 	@RequestMapping(value="/demandes", method=RequestMethod.GET)
 	public List<Demande> getDemande(){
@@ -50,11 +54,6 @@ public class DemandeRestService {
 		return demsresult;
 	}
 	
-	@RequestMapping(value="/demande/valid/{id}", method=RequestMethod.PUT)
-	public Demande modifUser(@RequestBody Demande dem) {
-		dem.setStatus(true);
-		return demandeRepo.save(dem);
-	}
 	
 	/**@RequestMapping(value="/demande/supr/{id}", method=RequestMethod.DELETE)
 	public boolean deleteDemande(@PathVariable Demande dem) {
