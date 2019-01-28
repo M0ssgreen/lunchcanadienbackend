@@ -3,6 +3,7 @@ package fr.solutec.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class User implements Serializable {
 	private Long idUser;
 	private String nom;
 	private String prenom;
+	@Column(unique=true)
 	private String mail;
 	private String mdp;
 	private String entreprise;
