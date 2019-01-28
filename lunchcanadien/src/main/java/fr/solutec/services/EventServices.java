@@ -35,7 +35,15 @@ public class EventServices {
 	}
 	
 	public static Event getIdByDate(Date dateEvent) {
-		return eventRepository.findByDate(dateEvent);
+		List<Event> listEvent = eventRepository.findAll();
+		Event retour = null;
+		for (Event event : listEvent) {
+			if (dateEvent.equals(event.getDate())) {
+				retour=event;
+			}
+		}
+		return retour;
+		
 	}
 	
 	public static Event createEvent(Event event) {
