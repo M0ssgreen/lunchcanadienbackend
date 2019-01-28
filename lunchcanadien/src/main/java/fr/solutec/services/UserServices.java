@@ -21,25 +21,11 @@ public class UserServices {
 	private UserRepository userRepo;
 	
 	
-	public List<User> getIdByMail(String mail) {
-		/*List<User> listUser = userRepo.findAll();
-		User retour = null;
-		for (User user : listUser) {
-			if (mail.equals(user.getMail())) {
-				retour=user;
-			}
-		}
-		return retour;*/
-	
-		System.out.println(mail);
-
-
-		return userRepo.findByMail(mail);
-
-		
+	public List<User> getByMail(String mail) {
+		return this.userRepo.findByMail(mail);		
 	}
 	
-public User createUser(User user) {
+	public User createUser(User user) {
 		
 		return userRepo.save(user);
 	}

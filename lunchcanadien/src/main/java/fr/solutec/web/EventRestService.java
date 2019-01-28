@@ -27,9 +27,12 @@ public class EventRestService {
 	@Autowired
 	private EventRepository eventRepo;
 	
+	@Autowired
+	private DemandeServices demandeServices;
+	
 	@RequestMapping(value="/events", method=RequestMethod.GET)
 	public List<Event> getEvents(){
-		return eventRepo.findAll();
+		return this.eventRepo.findAll();
 	}
 	
 
@@ -40,8 +43,7 @@ public class EventRestService {
 	
 	@RequestMapping(value="/events", method=RequestMethod.POST)
 	public void saveEvent(@RequestBody Demande d){
-		DemandeServices demandeS = new DemandeServices();
-		demandeS.matchEvent(d);
+		this.demandeServices.matchEvent(d);
 		
 	}
 	
