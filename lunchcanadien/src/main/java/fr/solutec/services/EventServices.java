@@ -22,19 +22,27 @@ public class EventServices {
 	@Autowired
 	private UserRepository userRepository;
 	public List<Event> eventByMail(String mail){
-		List<Event> eventByMail = eventRepository.findAll();
+		List<Event> eventFromMail = eventRepository.findAll();
 		List<Demande> demandeAll = demandes.findAll();
 		User user = userRepository.findByMail(mail);
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
-				eventByMail.add(eventRepository.findOne(demande.getEvent().getIdEvent()));
+				eventFromMail.add(eventRepository.findOne(demande.getEvent().getIdEvent()));
 			}
 		}
-		return eventByMail;
+		return eventFromMail;
 	}
 	
 	public static Event getIdByDate(Date dateEvent) {
+		/*List<Event> listEvent = eventRepository.findAll();
+		Event retour = null;
+		for (Event event : listEvent) {
+			if (dateEvent.equals(event.getDate())) {
+				retour=event;
+			}
+		}
+		return retour;*/
 		return eventRepository.findByDate(dateEvent);
 	}
 	

@@ -21,6 +21,14 @@ public class UserServices {
 	
 	
 	public static User getIdByMail(String mail) {
+		/*List<User> listUser = userRepo.findAll();
+		User retour = null;
+		for (User user : listUser) {
+			if (mail.equals(user.getMail())) {
+				retour=user;
+			}
+		}
+		return retour;*/
 		return userRepo.findByMail(mail);
 		
 	}
