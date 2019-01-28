@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.dao.EventRepository;
@@ -64,10 +65,13 @@ public class EventRestService {
 		return eventRepo.findOne(id);
 	}
 	
-	@RequestMapping(value="/eventvalide/{mail}", method=RequestMethod.GET)
-	public List<Event> getEventByMail(@PathVariable String mail){
+	@RequestMapping(value="/eventvalide", method=RequestMethod.GET)
+	public List<Event> getEventByMail(@RequestParam("email") String email){
+		if (email != null) {
 		EventServices eventServices = new EventServices();
-		return eventServices.eventByMail(mail);
+		return eventServices.eventByMail(email);
+		}
+		return eventRepo.findAll();
 	}
 	
 	

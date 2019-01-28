@@ -21,6 +21,7 @@ public class EventServices {
 	private DemandeRepository demandes;
 	@Autowired
 	private UserRepository userRepository;
+	
 	public List<Event> eventByMail(String mail){
 		List<Event> eventFromMail = eventRepository.findAll();
 		List<Demande> demandeAll = demandes.findAll();

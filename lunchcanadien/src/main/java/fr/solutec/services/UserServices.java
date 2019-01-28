@@ -29,7 +29,7 @@ public class UserServices {
 			}
 		}
 		return retour;*/
-		return userRepo.findByMail(mail);
+		return (User) userRepo.findByMail(mail);
 		
 	}
 	
