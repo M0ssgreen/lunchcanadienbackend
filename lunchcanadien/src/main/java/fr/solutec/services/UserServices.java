@@ -21,7 +21,7 @@ public class UserServices {
 	private UserRepository userRepo;
 	
 	
-	public User getIdByMail(String mail) {
+	public List<User> getIdByMail(String mail) {
 		/*List<User> listUser = userRepo.findAll();
 		User retour = null;
 		for (User user : listUser) {

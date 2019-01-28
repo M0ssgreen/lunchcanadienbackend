@@ -24,7 +24,7 @@ public class EventServices {
 	public List<Event> eventByMail(String mail){
 		List<Event> eventFromMail = eventRepository.findAll();
 		List<Demande> demandeAll = demandes.findAll();
-		User user = userRepository.findByMail(mail);
+		User user = userRepository.findByMail(mail).get(0);
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
@@ -34,7 +34,7 @@ public class EventServices {
 		return eventFromMail;
 	}
 	
-	public Event getIdByDate(Date dateEvent) {
+	public List<Event> getIdByDate(Date dateEvent) {
 		/*List<Event> listEvent = eventRepository.findAll();
 		Event retour = null;
 		for (Event event : listEvent) {

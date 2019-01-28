@@ -1,6 +1,8 @@
 package fr.solutec.services;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,27 +32,32 @@ public class DemandeServices {
 		
 		
 		
-		
+		List<User> lstUser = new ArrayList();
+		List<Event> lstEvent = new ArrayList();
 		User user = new User();
 		UserServices userS = new UserServices();
 		EventServices eventS = new EventServices();
-		user=userS.getIdByMail(mail);
+		lstUser=userS.getIdByMail(mail);
+		lstEvent = eventS.getIdByDate(date);
 		Event event = new Event();
-		event = eventS.getIdByDate(date);
-		if (user==null) {
+		
+		if (lstUser==null) {
 			user.setMail(mail);
 			user.setEntreprise(entreprise);
 			user.setNom(nom);
 			user.setPrenom(prenom);
 			user = userS.createUser(user);
-			user=userS.getIdByMail(mail);
+			lstUser=userS.getIdByMail(mail);
+			
 			
 		}
-		if (event==null) {
+		user=lstUser.get(0);
+		if (lstEvent==null) {
 			event.setDate(date);
 			event = eventS.createEvent(event);
-			event = eventS.getIdByDate(date);
+			lstEvent = eventS.getIdByDate(date);
 		}
+		event=lstEvent.get(0);
 		Demande demande = new Demande(event, user);
 		createDemande(demande);
 		
