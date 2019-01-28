@@ -20,7 +20,7 @@ import fr.solutec.entities.User;
 @Configuration
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackages = "fr.solutec.dao")
-//@ComponentScan(basePackages = "{'fr.solutec.services', 'fr.solutec.web'}")
+@ComponentScan(basePackages = {"fr.solutec.services", "fr.solutec.web"})
 @SpringBootApplication
 public class LunchcanadienApplication {
 	
