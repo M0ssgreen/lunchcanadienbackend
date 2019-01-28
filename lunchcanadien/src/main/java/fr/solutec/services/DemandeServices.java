@@ -21,7 +21,16 @@ public class DemandeServices {
 	private static DemandeRepository demandeRepo;
 	
 	
-	public static void matchEvent(String mail, Date date, String prenom, String nom, String entreprise) {
+	public static void matchEvent(Demande d) {
+		String mail = d.getUser().getMail();
+		String prenom = d.getUser().getPrenom();
+		String nom = d.getUser().getNom();
+		String entreprise = d.getUser().getEntreprise();
+		Date date = d.getEvent().getDate();
+		
+		
+		
+		
 		User user = new User();
 		user=UserServices.getIdByMail(mail);
 		Event event = new Event();
