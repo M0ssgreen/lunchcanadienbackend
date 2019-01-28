@@ -22,6 +22,7 @@ public class Event {
 	private Date date;
 	@OneToMany
 	private List<Demande> demande;
+	
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub
