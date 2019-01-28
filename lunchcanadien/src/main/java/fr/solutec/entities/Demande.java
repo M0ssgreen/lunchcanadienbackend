@@ -12,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Demande {
-	@Id @GeneratedValue 
+	
+	@Id @GeneratedValue
 	private Long idDemande;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Event event;
