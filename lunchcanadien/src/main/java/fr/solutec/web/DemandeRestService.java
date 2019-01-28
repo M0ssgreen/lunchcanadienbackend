@@ -29,7 +29,7 @@ import fr.solutec.entities.Demande;
 @RestController
 @CrossOrigin("*")
 public class DemandeRestService {
-	
+	/**
 	@Autowired
 	private DemandeRepository demandeRepo;
 	private UserRepository userRepo;
@@ -62,7 +62,7 @@ public class DemandeRestService {
 			}
 		}
 		return demsresult;
-	}
+	}*/
 	
 	
 	/**@RequestMapping(value="/demande/supr/{id}", method=RequestMethod.DELETE)
@@ -70,7 +70,7 @@ public class DemandeRestService {
 		demandeRepo.delete(dem.getIdDemande());
 		return true;
 	}*/
-	
+	/*
 	@RequestMapping(value="/demandes/{id}", method=RequestMethod.DELETE)
 	public boolean suppDemande(@PathVariable Long id){
 		 demandeRepo.delete(id);
@@ -85,5 +85,5 @@ public class DemandeRestService {
 		return demandeRepo.findAll();
 	}
 	
-
+*/
 }
