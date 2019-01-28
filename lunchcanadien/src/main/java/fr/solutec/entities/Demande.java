@@ -12,10 +12,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Demande {
+	
+	@Id @GeneratedValue
+	private Long idDemande;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private Event event;
 	@ManyToOne(cascade=CascadeType.MERGE)
 	private User user;
+	
 	public Demande() {
 		super();
 		// TODO Auto-generated constructor stub

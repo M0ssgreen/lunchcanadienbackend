@@ -12,14 +12,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.dao.DemandeRepository;
+import fr.solutec.dao.EventRepository;
+import fr.solutec.dao.UserRepository;
+import fr.solutec.entities.Demande;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import fr.solutec.dao.DemandeRepository;
 import fr.solutec.entities.Demande;
 
 @RestController
 @CrossOrigin("*")
 public class DemandeRestService {
-	
+	/**
 	@Autowired
 	private DemandeRepository demandeRepo;
+	private UserRepository userRepo;
+	private EventRepository eventRepo;
 	
 	@RequestMapping(value="/demandes", method=RequestMethod.GET)
 	public List<Demande> getDemande(){
@@ -48,20 +62,15 @@ public class DemandeRestService {
 			}
 		}
 		return demsresult;
-	}
+	}*/
 	
-	@RequestMapping(value="/demande/valid/{id}", method=RequestMethod.PUT)
-	public Demande modifUser(@RequestBody Demande dem) {
-		dem.setStatus(true);
-		return demandeRepo.save(dem);
-	}
 	
 	/**@RequestMapping(value="/demande/supr/{id}", method=RequestMethod.DELETE)
 	public boolean deleteDemande(@PathVariable Demande dem) {
 		demandeRepo.delete(dem.getIdDemande());
 		return true;
 	}*/
-	
+	/*
 	@RequestMapping(value="/demandes/{id}", method=RequestMethod.DELETE)
 	public boolean suppDemande(@PathVariable Long id){
 		 demandeRepo.delete(id);
@@ -70,5 +79,11 @@ public class DemandeRestService {
 	
 	
 
-
+	
+	@RequestMapping(value="/demandes", method=RequestMethod.GET)
+	public List<Demande> getDemandes(){
+		return demandeRepo.findAll();
+	}
+	
+*/
 }

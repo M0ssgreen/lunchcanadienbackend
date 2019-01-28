@@ -5,7 +5,10 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import fr.solutec.dao.DemandeRepository;
 import fr.solutec.dao.EventRepository;
@@ -14,9 +17,10 @@ import fr.solutec.email.MailServices;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 
+
 @SpringBootApplication
-public class LunchcanadienApplication implements CommandLineRunner {
-	
+public class LunchcanadienApplication {
+
 	//@Autowired
 	//private MailServices mailServices;
 	/*
@@ -27,6 +31,7 @@ public class LunchcanadienApplication implements CommandLineRunner {
 	@Autowired
 	private EventRepository eventRepos;
 	*/
+
 	
 	public static void main(String[] args) {
 		SpringApplication.run(LunchcanadienApplication.class, args);

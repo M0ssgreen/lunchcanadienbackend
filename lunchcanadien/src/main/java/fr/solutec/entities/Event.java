@@ -18,10 +18,11 @@ public class Event {
 	@Id @GeneratedValue
 	private Long idEvent;
 	@CreationTimestamp
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date;
 	@OneToMany
 	private List<Demande> demande;
+	
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -17,6 +17,7 @@ import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
+import fr.solutec.services.DemandeServices;
 
 @RestController
 @CrossOrigin("*")
@@ -30,12 +31,24 @@ public class EventRestService {
 	}
 	
 
-	@RequestMapping(value="/events", method=RequestMethod.POST)
+	/*@RequestMapping(value="/events", method=RequestMethod.POST)
 	public Event saveEvent(@RequestBody Event e){
 		return eventRepo.save(e);
+	}*/
+	
+	@RequestMapping(value="/events", method=RequestMethod.POST)
+	public void saveEvent(@RequestBody Event e, User u){
+		DemandeServices.matchEvent(u.getMail(),e.getDate(),u.getPrenom(), u.getNom(), u.getEntreprise());
+		
 	}
 	
 	
+	@RequestMapping(value="/events/{id}",method=RequestMethod.DELETE)
+	public boolean suppUser(@PathVariable Long id) {
+		
+		eventRepo.delete(id);
+		return true;
+	}
 	
 	
 	@RequestMapping(value="/events/{id}", method=RequestMethod.PUT)
