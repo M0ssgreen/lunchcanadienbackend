@@ -17,6 +17,7 @@ import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
+import fr.solutec.services.EventServices;
 
 @RestController
 @CrossOrigin("*")
@@ -53,6 +54,13 @@ public class EventRestService {
 	public Event getEventById(@PathVariable Long id){
 		return eventRepo.findOne(id);
 	}
+	
+	@RequestMapping(value="/eventvalide/{mail}", method=RequestMethod.GET)
+	public List<Event> getEventByMail(@PathVariable String mail){
+		EventServices eventServices = new EventServices();
+		return eventServices.eventByMail(mail);
+	}
+	
 	
 	/*@RequestMapping(value="/eventnonvalid/all/{id}", method=RequestMethod.GET)
 	public List<Event> getEventByDemandes(@PathVariable Long id){
