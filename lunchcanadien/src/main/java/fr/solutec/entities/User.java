@@ -19,9 +19,7 @@ public class User implements Serializable {
 	private String entreprise;
 	@OneToMany
 	private List<Demande> demande;
-	
-	
-	
+		
 	public User(String nom, String prenom, String mail, String mdp, String entreprise) {
 		super();
 		this.nom = nom;
@@ -30,7 +28,6 @@ public class User implements Serializable {
 		this.mdp = mdp;
 		this.entreprise = entreprise;
 	}
-
 	public User(Long idUser, String nom, String prenom, String mail, String mdp, String entreprise,
 			List<Demande> demande) {
 		super();
