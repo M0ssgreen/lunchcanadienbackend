@@ -16,8 +16,11 @@ import fr.solutec.entities.User;
 @RestController
 @CrossOrigin("*")
 public class EventServices {
-	private EventRepository eventRepository;
+	@Autowired
+	private static EventRepository eventRepository;
+	@Autowired
 	private DemandeRepository demandes;
+	@Autowired
 	private UserRepository userRepository;
 	public List<Event> eventByMail(String mail){
 		List<Event> eventByMail = eventRepository.findAll();
@@ -32,16 +35,13 @@ public class EventServices {
 		return eventByMail;
 	}
 	
-	@Autowired
-	private static EventRepository eventRepo;
-	
 	public static Event getIdByDate(Date dateEvent) {
-		return eventRepo.findByDate(dateEvent);
+		return eventRepository.findByDate(dateEvent);
 	}
 	
 	public static Event createEvent(Event event) {
 		
-		return eventRepo.save(event);
+		return eventRepository.save(event);
 	}		
 
 }
