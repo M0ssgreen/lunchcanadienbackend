@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.solutec.dao.EventRepository;
 import fr.solutec.web.DemandeRestService;
 import fr.solutec.dao.UserRepository;
+import fr.solutec.email.MailServices;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
@@ -24,6 +25,9 @@ import fr.solutec.services.DemandeServices;
 public class EventRestService {
 	@Autowired
 	private EventRepository eventRepo;
+	
+	@Autowired
+	private MailServices ms;
 	
 	@RequestMapping(value="/events", method=RequestMethod.GET)
 	public List<Event> getEvents(){
@@ -40,6 +44,22 @@ public class EventRestService {
 	public void saveEvent(@RequestBody Event e, User u){
 		DemandeServices.matchEvent(u.getMail(),e.getDate(),u.getPrenom(), u.getNom(), u.getEntreprise());
 		
+	}
+	
+	@RequestMapping(value="/mailDispo", method=RequestMethod.POST)
+	public void envMail1(@RequestBody User u) {
+		ms.envMail(u);
+	}
+	
+	@RequestMapping(value="/mailMatch", method=RequestMethod.POST)
+	public void envMailGroupe1(@RequestBody List<User> users) {
+		ms.envMailGroupe(users);
+		
+	}
+	
+	@RequestMapping(value="/mailRappel", method=RequestMethod.POST)
+	public void envMailRappel1(@RequestBody List<User> users) {
+		ms.envMailRappel(users);
 	}
 	
 	
