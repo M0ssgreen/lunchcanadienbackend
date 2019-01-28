@@ -18,10 +18,10 @@ import fr.solutec.dao.DemandeRepository;
 public class DemandeServices {
 	
 	@Autowired
-	private static DemandeRepository demandeRepo;
+	private DemandeRepository demandeRepo;
 	
 	
-	public static void matchEvent(Demande d) {
+	public void matchEvent(Demande d) {
 		String mail = d.getUser().getMail();
 		String prenom = d.getUser().getPrenom();
 		String nom = d.getUser().getNom();
@@ -32,28 +32,30 @@ public class DemandeServices {
 		
 		
 		User user = new User();
-		user=UserServices.getIdByMail(mail);
+		UserServices userS = new UserServices();
+		EventServices eventS = new EventServices();
+		user=userS.getIdByMail(mail);
 		Event event = new Event();
-		event = EventServices.getIdByDate(date);
+		event = eventS.getIdByDate(date);
 		if (user==null) {
 			user.setMail(mail);
 			user.setEntreprise(entreprise);
 			user.setNom(nom);
 			user.setPrenom(prenom);
-			user = UserServices.createUser(user);
-			user=UserServices.getIdByMail(mail);
+			user = userS.createUser(user);
+			user=userS.getIdByMail(mail);
 			
 		}
 		if (event==null) {
 			event.setDate(date);
-			event = EventServices.createEvent(event);
-			event = EventServices.getIdByDate(date);
+			event = eventS.createEvent(event);
+			event = eventS.getIdByDate(date);
 		}
 		Demande demande = new Demande(event, user);
 		createDemande(demande);
 		
 	}
-	public static void createDemande(Demande demande) {
+	public void createDemande(Demande demande) {
 		demandeRepo.save(demande);
 	}
 	

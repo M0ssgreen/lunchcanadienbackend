@@ -16,7 +16,7 @@ import fr.solutec.entities.User;
 @Service
 public class EventServices {
 	@Autowired
-	private static EventRepository eventRepository;
+	private EventRepository eventRepository;
 	@Autowired
 	private DemandeRepository demandes;
 	@Autowired
@@ -34,7 +34,7 @@ public class EventServices {
 		return eventFromMail;
 	}
 	
-	public static Event getIdByDate(Date dateEvent) {
+	public Event getIdByDate(Date dateEvent) {
 		/*List<Event> listEvent = eventRepository.findAll();
 		Event retour = null;
 		for (Event event : listEvent) {
@@ -46,7 +46,7 @@ public class EventServices {
 		return eventRepository.findByDate(dateEvent);
 	}
 	
-	public static Event createEvent(Event event) {
+	public Event createEvent(Event event) {
 		
 		return eventRepository.save(event);
 	}		
