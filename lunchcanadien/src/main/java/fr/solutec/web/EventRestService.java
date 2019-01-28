@@ -29,11 +29,11 @@ public class EventRestService {
 	private EventRepository eventRepo;
 	
 	@Autowired
-<<<<<<< HEAD
+
 	private DemandeServices demandeServices;
-=======
+
 	private MailServices ms;
->>>>>>> branch 'master' of https://github.com/M0ssgreen/lunchcanadienbackend
+
 	
 	@RequestMapping(value="/events", method=RequestMethod.GET)
 	public List<Event> getEvents(){

@@ -1,5 +1,6 @@
 package fr.solutec.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,53 +16,39 @@ import fr.solutec.dao.DemandeRepository;
 
 @Service
 public class DemandeServices {
-	
-	@Autowired
-	private DemandeRepository demandeRepo;
-	
-	@Autowired
+	private DemandeRepository demandeRepository;
 	private EventServices eventServices;
-	
-	@Autowired
 	private UserServices userServices;
 	
-	public void matchEvent(Demande d) {
-		String mail = d.getUser().getMail();
-		String prenom = d.getUser().getPrenom();
-		String nom = d.getUser().getNom();
-		String entreprise = d.getUser().getEntreprise();
-		Date date = d.getEvent().getDate();
-		
-	
-		User user = new User();
-		List<User> lstUser = this.userServices.getByMail(mail);
-		List<Event> lstEvent  = this.eventServices.getIdByDate(date);
-		Event event = new Event();
-		
-		if (lstUser.isEmpty()) {
-			user.setMail(mail);
-			user.setEntreprise(entreprise);
-			user.setNom(nom);
-			user.setPrenom(prenom);
-			user = this.userServices.createUser(user); 
-			lstUser = this.userServices.getByMail(mail);
-			
+	@Autowired
+	public DemandeServices(DemandeRepository demandeRepository, EventServices eventServices,
+			UserServices userServices) {
+		super();
+		this.demandeRepository = demandeRepository;
+		this.eventServices = eventServices;
+		this.userServices = userServices;
+	}
+
+	public void matchEvent(Demande demande) {		
+
+		List<User> users = this.userServices.getByMail(demande.getUser().getMail());
+		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getDate());
+		if (users.isEmpty()) {
+			users = new ArrayList<User>();
+			users.add(this.userServices.createUser(demande.getUser()));
 		}
 		
-		
-		user=lstUser.get(0);
-		if ( lstEvent.isEmpty()) {
-			event.setDate(date);
-			event = this.eventServices.createEvent(event);
-			lstEvent = this.eventServices.getIdByDate(date);
+		if (events.isEmpty()) {
+			events = new ArrayList<Event>();
+			events.add(this.eventServices.createEvent(demande.getEvent()));
 		}
-		event=lstEvent.get(0);
-		Demande demande = new Demande(event, user);
-		createDemande(demande);
+		
+		this.demandeRepository.save(new Demande(events.get(0), users.get(0)));
 		
 	}
+
 	public void createDemande(Demande demande) {
-		demandeRepo.save(demande);
+		this.demandeRepository.save(demande);
 	}
 	
 }

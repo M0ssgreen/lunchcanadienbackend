@@ -1,23 +1,30 @@
 package fr.solutec.entities;
 
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Table(name="demande")
 public class Demande {
 	
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idDemande;
+	
 	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name="idEvent")
 	private Event event;
+	
 	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name = "idUser")
 	private User user;
 	
 	public Demande() {
