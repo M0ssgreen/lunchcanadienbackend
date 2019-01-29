@@ -72,7 +72,7 @@ public class MailServices {
 		 String Newligne=System.getProperty("line.separator");
 		 String contenu = "Bonjour " + user.getPrenom() + "," + Newligne + Newligne + "Un événement a matché." + Newligne + "Veuillez vous rendre sur le lunch pour choisir le lieu de rencontre." + Newligne + Newligne + "Bonne journée !" + Newligne + "Equipe LunchCanadien";
 		 sendMail(user.getEmail(), sujet, contenu);
-	 }
+	 }//ooo
 	 
 	 public void envMailGroupe(List<User> users) {
 		 String sujet = "[LunchCanadien] Match !";
