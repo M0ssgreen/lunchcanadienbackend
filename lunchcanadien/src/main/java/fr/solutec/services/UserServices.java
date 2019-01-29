@@ -20,8 +20,8 @@ public class UserServices {
 	private UserRepository userRepo;
 	
 	
-	public List<User> getByMail(String mail) {
-		return this.userRepo.findByMail(mail);		
+	public List<User> getByMail(String email) {
+		return this.userRepo.findByEmail(email);		
 	}
 	
 	public User createUser(User user) {
