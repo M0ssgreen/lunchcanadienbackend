@@ -58,18 +58,26 @@ public class MailServices {
 		}
 	 }
 
-	 public void envMail(User u ) {
+	 public void envMail(User u) {
 			String sujet = "Création d'un LunchCanadien";
 			String Newligne=System.getProperty("line.separator");
-			String contenu = "Bonjour " + u.getPrenom() + "," + Newligne + Newligne + "Vous venez de poster vos disponibilités. "+ Newligne + "Vous recevrez un nouvel email dès que 2 collègues auront un créneau horaire correspondant au votre. " + Newligne + Newligne + "Patience ... et bonne journée !";
+			String contenu = "Bonjour " + u.getPrenom() + "," + Newligne + Newligne + "Vous venez de poster vos disponibilités. "+ Newligne + "Plus qu'à attendre que des collègues se joignent à votre lunch. " + Newligne + Newligne + "Patience ... et bonne journée !" + Newligne + "Equipe LunchCanadien";
 			sendMail(u.getMail(), sujet, contenu);
 		}
+	 
+	 
+	 public void envMailOrganisateur(User user) {
+		 String sujet = "[LunchCanadien] Choix du restaurant";
+		 String Newligne=System.getProperty("line.separator");
+		 String contenu = "Bonjour " + user.getPrenom() + "," + Newligne + Newligne + "Un événement a matché." + Newligne + "Veuillez vous rendre sur le lunch pour choisir le lieu de rencontre." + Newligne + Newligne + "Bonne journée !" + Newligne + "Equipe LunchCanadien";
+		 sendMail(user.getMail(), sujet, contenu);
+	 }
 	 
 	 public void envMailGroupe(List<User> users) {
 		 String sujet = "[LunchCanadien] Match !";
 		 String Newligne=System.getProperty("line.separator");
 		 for (User u:users) {
-			String contenu = "Bonjour " + u.getPrenom() + "," + Newligne + Newligne + "Des collègues sont disponibles en même temps que vous. " + Newligne + "Contactez-les ! Leurs coordonnées sont disponibles dans votre Lunch." + Newligne + Newligne + "Bonne journée !";
+			String contenu = "Bonjour " + u.getPrenom() + "," + Newligne + Newligne + "L'organisateur de votre lunch à choisi un lieu de rencontre. " + Newligne + "Rendez-vous sur votre Lunch pour le découvrir !" + Newligne + Newligne + "Bonne journée." + Newligne + "Equipe LunchCanadien";
 			sendMail(u.getMail(), sujet, contenu);
 		 }
 	 }
@@ -78,7 +86,7 @@ public class MailServices {
 			String sujet = "[LunchCanadien] Rappel";
 			String Newligne=System.getProperty("line.separator");
 			for (User u:users) {
-				String contenu = "Bonjour " + u.getPrenom() + "," + Newligne + Newligne + "Noubliez pas votre lunch prévu ce midi... Vos collègues vous attendent ! " + Newligne + Newligne + "Bon appétit.";
+				String contenu = "Bonjour " + u.getPrenom() + "," + Newligne + Newligne + "Noubliez pas votre lunch prévu ce midi... Vos collègues vous attendent ! " + Newligne + Newligne + "Bon appétit." + Newligne + "Equipe LunchCanadien";
 				sendMail(u.getMail(), sujet, contenu);
 			}
 			

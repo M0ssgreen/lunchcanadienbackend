@@ -12,7 +12,6 @@ import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 import fr.solutec.web.*;
-import groovyjarjarasm.asm.util.Printer;
 
 @Service
 public class UserServices {

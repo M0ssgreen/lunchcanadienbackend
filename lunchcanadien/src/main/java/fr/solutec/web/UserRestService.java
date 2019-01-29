@@ -30,7 +30,7 @@ public class UserRestService {
 	
 	@RequestMapping(value="/users/{id}", method=RequestMethod.GET)
 	public User getUser(@PathVariable Long id){
-		return userRepo.findOne(id);
+		return userRepo.findById(id).get();
 	}
 	
 	@RequestMapping(value="/users", method=RequestMethod.POST)

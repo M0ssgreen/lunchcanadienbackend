@@ -9,13 +9,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.bind.annotation.RestController;
 
 @Configuration
 @EntityScan(basePackages = "fr.solutec.entities") 
 @EnableJpaRepositories(basePackages = "fr.solutec.dao")
 @ComponentScan(basePackages = {"fr.solutec.services", "fr.solutec.web"})
 @SpringBootApplication
-
 public class LunchcanadienApplication {
 	
 	

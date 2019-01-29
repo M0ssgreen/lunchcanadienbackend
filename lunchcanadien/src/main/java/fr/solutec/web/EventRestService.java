@@ -28,7 +28,6 @@ public class EventRestService {
 	@Autowired
 	private EventRepository eventRepo;
 	private DemandeServices demandeServices;
-	private MailServices ms;
 
 	
 	@RequestMapping(value="/events", method=RequestMethod.GET)
@@ -46,31 +45,13 @@ public class EventRestService {
 	public void saveEvent(@RequestBody Demande d){
 
 		this.demandeServices.matchEvent(d);
-
-		
-	}
-	
-	@RequestMapping(value="/mailDispo", method=RequestMethod.POST)
-	public void envMail1(@RequestBody User u) {
-		ms.envMail(u);
-	}
-	
-	@RequestMapping(value="/mailMatch", method=RequestMethod.POST)
-	public void envMailGroupe1(@RequestBody List<User> users) {
-		ms.envMailGroupe(users);
-		
-	}
-	
-	@RequestMapping(value="/mailRappel", method=RequestMethod.POST)
-	public void envMailRappel1(@RequestBody List<User> users) {
-		ms.envMailRappel(users);
 	}
 	
 	
 	@RequestMapping(value="/events/{id}",method=RequestMethod.DELETE)
 	public boolean suppUser(@PathVariable Long id) {
 		
-		eventRepo.delete(id);
+		//eventRepo.delete(id);
 		return true;
 	}
 	
@@ -83,7 +64,7 @@ public class EventRestService {
 	
 	@RequestMapping(value="/event/{id}", method=RequestMethod.GET)
 	public Event getEventById(@PathVariable Long id){
-		return eventRepo.findOne(id);
+		return eventRepo.findById(id).get();
 	}
 	
 	@RequestMapping(value="/eventvalide/{mail}", method=RequestMethod.GET)
