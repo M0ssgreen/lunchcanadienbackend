@@ -27,11 +27,14 @@ public class EventServices {
 	private UserRepository userRepository;
 	@Autowired
 	private AdresseRepository adresseRepository;
+
 	
-	public List<Event> eventByMail(String mail){
+	public List<Event> eventByMail(String email){
 		List<Event> eventFromMail = new ArrayList();
+
 		List<Demande> demandeAll = demandes.findAll();
-		User user = userRepository.findByEmail(mail).get(0);
+
+		User user = userRepository.findByEmail(email).get(0);
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
@@ -64,6 +67,21 @@ public class EventServices {
 		Adresse a = adresseRepository.findById(idAdresse).get();
 		e.setAdresse(a);
 		return eventRepository.save(e);
+	}
+	
+	public List<User> getEventUsers(Long idEvent) {
+		List<User> users = new ArrayList();
+		List<Demande> demandeAll = demandes.findAll();
+		
+		for (Demande demande : demandeAll) {
+			
+			if (demande.getEvent().getId()==idEvent) {
+				users.add(demande.getUser());
+			}else {System.out.println("pas de match");}
+			
+		}
+		
+		return users;
 	}
 
 }
