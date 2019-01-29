@@ -71,13 +71,15 @@ public class EventServices {
 	
 	public List<User> getEventUsers(Long idEvent) {
 		List<User> users = new ArrayList();
+		List<User> usersInfo = new ArrayList();
 		List<Demande> demandeAll = demandes.findAll();
 		
 		for (Demande demande : demandeAll) {
 			
 			if (demande.getEvent().getId()==idEvent) {
+				System.out.println(users);
 				users.add(demande.getUser());
-			}else {System.out.println("pas de match");}
+			}else {System.out.println(users);}
 			
 		}
 		
