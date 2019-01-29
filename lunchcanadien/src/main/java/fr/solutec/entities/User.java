@@ -3,10 +3,13 @@ package fr.solutec.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,9 +26,36 @@ public class User extends Base {
 	private String email;
 	private String mdp;
 	private String telephone;
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+	@JoinColumn(name = "ID_ENTREPRISE")
+	private Entreprise entreprise;
 	
 	
 	
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+
+
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
+	}
+
+
+
+	public User(String nom, String prenom, String email, String mdp, String telephone, Entreprise entreprise) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.mdp = mdp;
+		this.telephone = telephone;
+		this.entreprise = entreprise;
+	}
+
+
+
 	public User() {
 		super();
 	}
