@@ -21,7 +21,7 @@ public class UserServices {
 	
 	
 	public List<User> getByMail(String mail) {
-		return this.userRepo.findByMail(mail);		
+		return this.userRepo.findByEmail(mail);		
 	}
 	
 	public User createUser(User user) {
