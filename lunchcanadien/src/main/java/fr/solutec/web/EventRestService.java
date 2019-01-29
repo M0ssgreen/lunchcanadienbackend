@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.solutec.dao.EventRepository;
 import fr.solutec.web.DemandeRestService;
 import fr.solutec.dao.UserRepository;
+import fr.solutec.entities.Adresse;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
@@ -101,6 +102,10 @@ public class EventRestService {
 		
 		return eventsresult;
 	}*/
-	
+	@RequestMapping(value="/event/{idEvent}/resto/{idAdresse}", method=RequestMethod.PUT)
+	public Event ajoutResto(@PathVariable Long idEvent, @PathVariable Long idAdresse, @RequestBody String resto){
+		Event e = eventServices.setRestoEvent(idEvent, resto, idAdresse);
+		 return e;
+	}
 	
 }

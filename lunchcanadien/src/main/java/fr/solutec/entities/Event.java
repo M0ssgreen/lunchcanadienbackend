@@ -5,9 +5,12 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -24,24 +27,24 @@ public class Event extends Base {
 	private String nom;
 	private int statut;
 	private String resto;
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "ID_ADRESSE")
+    private Adresse Adresse;
 	
 	
 	
 	public Event() {
 		super();
 	}
-	
-	
-	
-	public Event(Instant quantieme, String nom, int statut, String resto) {
+
+	public Event(Instant quantieme, String nom, int statut, String resto, Adresse adresse) {
 		super();
 		this.quantieme = quantieme;
 		this.nom = nom;
 		this.statut = statut;
 		this.resto = resto;
+		Adresse = adresse;
 	}
-
-
 
 	public Instant getQuantieme() {
 		return quantieme;
@@ -67,7 +70,13 @@ public class Event extends Base {
 	public void setResto(String resto) {
 		this.resto = resto;
 	}
-	
-	
+
+	public Adresse getAdresse() {
+		return Adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		Adresse = adresse;
+	}
 
 }

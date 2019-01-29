@@ -26,10 +26,10 @@ public class EmailRestService {
 		ms.envMail(u);
 	}
 	
-	@RequestMapping(value="/mailConf", method=RequestMethod.POST)
+	/*@RequestMapping(value="/mailConf", method=RequestMethod.POST)
 	public void envMailOrga(@RequestBody User user) {
 		ms.envMailOrganisateur(user);
-	}
+	}*/
 	
 	@RequestMapping(value="/mailMatch", method=RequestMethod.POST)
 	public void envMailGroupe1(@RequestBody List<User> users) {

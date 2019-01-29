@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.solutec.dao.AdresseRepository;
 import fr.solutec.dao.DemandeRepository;
 import fr.solutec.dao.EventRepository;
 import fr.solutec.dao.UserRepository;
+import fr.solutec.entities.Adresse;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
@@ -22,8 +24,10 @@ public class EventServices {
 	@Autowired
 	private DemandeRepository demandes;
 	@Autowired
-
 	private UserRepository userRepository;
+	@Autowired
+	private AdresseRepository adresseRepository;
+
 	
 	public List<Event> eventByMail(String email){
 		List<Event> eventFromMail = new ArrayList();
@@ -55,6 +59,14 @@ public class EventServices {
 	public Event createEvent(Event event) {
 		
 		return eventRepository.save(event);
-	}		
+	}	
+	
+	public Event setRestoEvent(Long idEvent, String resto, Long idAdresse) {
+		Event e = eventRepository.findById(idEvent).get();
+		e.setResto(resto);
+		Adresse a = adresseRepository.findById(idAdresse).get();
+		e.setAdresse(a);
+		return eventRepository.save(e);
+	}
 
 }

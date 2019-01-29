@@ -19,6 +19,7 @@ public class DemandeServices {
 	private DemandeRepository demandeRepository;
 	private EventServices eventServices;
 	private UserServices userServices;
+	private MailServices mailServices;
 	
 	@Autowired
 	public DemandeServices(DemandeRepository demandeRepository, EventServices eventServices,
@@ -34,18 +35,24 @@ public class DemandeServices {
 		List<User> users = this.userServices.getByMail(demande.getUser().getEmail());
 
 		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
-
+		
 		if (users.isEmpty()) {
 
 			users.add(this.userServices.createUser(demande.getUser()));
 		}
-		
-
-
-		
+				
 		if (events.isEmpty()) {
 
 			events.add(this.eventServices.createEvent(demande.getEvent()));
+		}
+		while (nombreParticipant(events.get(0))>=6) {
+			users.remove(0);
+		}
+		if (nombreParticipant(events.get(0))==3) {
+			mailServices.envMailOrganisateur(users.get(0).getEntreprise().getUser(), events.get(0));
+		}
+		if ((nombreParticipant(events.get(0))>=4) && (events.get(0).getStatut()==1)) {
+			mailServices.envMailGroupe(users);
 		}
 		
 		this.demandeRepository.save(new Demande(events.get(0), users.get(0)));
@@ -54,6 +61,11 @@ public class DemandeServices {
 
 	public void createDemande(Demande demande) {
 		this.demandeRepository.save(demande);
+	}
+	
+	public int nombreParticipant(Event event) {
+		List<Demande> lstDemande = demandeRepository.findByEvent(event);
+		return lstDemande.size();
 	}
 	
 }
