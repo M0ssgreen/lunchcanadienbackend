@@ -68,4 +68,13 @@ public class DemandeServices {
 		return lstDemande.size();
 	}
 	
+	public List<Demande> liste() {
+		return this.demandeRepository.findAll();
+	}
+	
+
+	public List<Demande> listeEnfonctionDeLeventId(Long eventId) {
+		return this.demandeRepository.findByEventId(eventId);
+	}
+	
 }

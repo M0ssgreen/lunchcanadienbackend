@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -26,12 +28,14 @@ public class User extends Base {
 	private String email;
 	private String mdp;
 	private String telephone;
+	
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
 	@JoinColumn(name = "ID_ENTREPRISE")
 	private Entreprise entreprise;
 	
 	
-	
+
+	@JsonIgnore
 	public Entreprise getEntreprise() {
 		return entreprise;
 	}

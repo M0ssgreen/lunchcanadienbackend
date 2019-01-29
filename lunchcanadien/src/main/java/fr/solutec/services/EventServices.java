@@ -22,7 +22,7 @@ public class EventServices {
 	@Autowired
 	private EventRepository eventRepository;
 	@Autowired
-	private DemandeRepository demandes;
+	private DemandeRepository demandeRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -32,7 +32,7 @@ public class EventServices {
 	public List<Event> eventByMail(String email){
 		List<Event> eventFromMail = new ArrayList();
 
-		List<Demande> demandeAll = demandes.findAll();
+		List<Demande> demandeAll = this.demandeRepository.findAll();
 
 		User user = userRepository.findByEmail(email).get(0);
 		
@@ -70,19 +70,16 @@ public class EventServices {
 	}
 	
 	public List<User> getEventUsers(Long idEvent) {
-		List<User> users = new ArrayList();
-		List<User> usersInfo = new ArrayList();
-		List<Demande> demandeAll = demandes.findAll();
+
+		List<User> users = new ArrayList<User>();
+		List<Demande> demandeAll = this.demandeRepository.findByEventId(idEvent);
+
 		
 		for (Demande demande : demandeAll) {
-			
-			if (demande.getEvent().getId()==idEvent) {
-				System.out.println(users);
-				users.add(demande.getUser());
-			}else {System.out.println(users);}
-			
-		}
-		
+
+			users.add(demande.getUser());
+		}		
+
 		return users;
 	}
 
