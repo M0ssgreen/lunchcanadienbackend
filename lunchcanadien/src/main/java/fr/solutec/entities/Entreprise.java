@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Entreprise extends Base{
 	
 	private String nom;
-	@Column (name="EMAIL_RH")
+	@Column (name="RESPOBONHEUR")
 	private User respoBonheur;
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_ADRESSE")
