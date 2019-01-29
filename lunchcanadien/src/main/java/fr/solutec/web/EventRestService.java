@@ -27,6 +27,7 @@ import fr.solutec.services.DemandeServices;
 public class EventRestService {
 	@Autowired
 	private EventRepository eventRepo;
+	@Autowired
 	private DemandeServices demandeServices;
 
 	
