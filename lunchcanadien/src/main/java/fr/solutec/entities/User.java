@@ -20,7 +20,7 @@ public class User extends Base {
 	private String nom;
 	private String prenom;
 	@Column(unique=true)
-	private String mail;
+	private String email;
 	private String mdp;
 	private String telephone;
 	
@@ -32,11 +32,11 @@ public class User extends Base {
 	
 	
 	
-	public User(String nom, String prenom, String mail, String mdp, String telephone) {
+	public User(String nom, String prenom, String email, String mdp, String telephone) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
-		this.mail = mail;
+		this.email = email;
 		this.mdp = mdp;
 		this.telephone = telephone;
 	}
@@ -55,11 +55,11 @@ public class User extends Base {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getMdp() {
 		return mdp;

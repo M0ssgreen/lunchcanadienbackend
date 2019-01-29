@@ -31,7 +31,7 @@ public class DemandeServices {
 
 	public void matchEvent(Demande demande) {		
 
-		List<User> users = this.userServices.getByMail(demande.getUser().getMail());
+		List<User> users = this.userServices.getByMail(demande.getUser().getEmail());
 
 		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
 
