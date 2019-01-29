@@ -32,11 +32,13 @@ public class DemandeServices {
 	public void matchEvent(Demande demande) {		
 
 		List<User> users = this.userServices.getByMail(demande.getUser().getMail());
-		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getDate());
 		if (users.isEmpty()) {
 			users = new ArrayList<User>();
 			users.add(this.userServices.createUser(demande.getUser()));
 		}
+		
+
+		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getDate());
 		
 		if (events.isEmpty()) {
 			events = new ArrayList<Event>();
