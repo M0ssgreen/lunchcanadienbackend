@@ -15,7 +15,6 @@ public class Adresse extends Base {
 	@Column(name = "CODE_POSTAL")
 	private String codePostal;
 	private String ville;
-	private String resto;
 	public Adresse() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,14 +31,6 @@ public class Adresse extends Base {
 		this.ville = ville;
 	}
 	
-	public Adresse(String rue, String numero, String codePostal, String ville, String resto) {
-		super();
-		this.rue = rue;
-		this.numero = numero;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.resto = resto;
-	}
 	public String getRue() {
 		return rue;
 	}
@@ -64,12 +55,5 @@ public class Adresse extends Base {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	public String getResto() {
-		return resto;
-	}
-	public void setResto(String resto) {
-		this.resto = resto;
-	}
-	
 	
 }
