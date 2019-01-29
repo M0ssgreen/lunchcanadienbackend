@@ -14,18 +14,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="demande")
 public class Demande {
-	
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idDemande;
-	
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="idEvent")
-	private Event event;
-	
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name = "idUser")
-	private User user;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true, nullable = false)
+    private Long id;
+
+    @ManyToOne(cascade = {MERGE, DETACH})
+    @JoinColumn(name = "ID_UTILISATEUR")
+    private User user;
+
+    @ManyToOne(cascade = {MERGE, DETACH})
+    @JoinColumn(name = "ID_EVENEMENT")
+    private Event event;
 	
 	public Demande() {
 		super();
