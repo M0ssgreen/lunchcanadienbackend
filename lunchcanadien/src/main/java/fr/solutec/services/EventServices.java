@@ -31,7 +31,7 @@ public class EventServices {
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
-				eventFromMail.add(eventRepository.findOne(demande.getEvent().getId()));
+				eventFromMail.add(eventRepository.findById(demande.getEvent().getId()).get());
 			}
 		}
 		return eventFromMail;
@@ -46,7 +46,7 @@ public class EventServices {
 			}
 		}
 		return retour;*/
-		return eventRepository.findByDate(dateEvent);
+		return eventRepository.findByQuantieme(dateEvent);
 	}
 	
 	public Event createEvent(Event event) {
