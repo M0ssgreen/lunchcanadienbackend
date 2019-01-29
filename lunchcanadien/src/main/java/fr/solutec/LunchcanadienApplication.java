@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 @EntityScan(basePackages = "fr.solutec.entities") 
 @EnableJpaRepositories(basePackages = "fr.solutec.dao")
-@ComponentScan(basePackages = {"fr.solutec.services", "fr.solutec.web"})
+@ComponentScan(basePackages = {"fr.solutec.services", "fr.solutec.web", "fr.solutec.email"})
 @SpringBootApplication
 public class LunchcanadienApplication {
 	
