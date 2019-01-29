@@ -1,4 +1,5 @@
 package fr.solutec.services;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class EventServices {
 		return eventFromMail;
 	}
 	
-	public List<Event> getIdByDate(Date dateEvent) {
+	public List<Event> getIdByDate(Instant dateEvent) {
 		/*List<Event> listEvent = eventRepository.findAll();
 		Event retour = null;
 		for (Event event : listEvent) {
