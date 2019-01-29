@@ -23,7 +23,7 @@ public class UserRestService {
 	@RequestMapping(value="/users", method=RequestMethod.GET)
 	public List<User> getUsers(@RequestParam("email") String email){
 		if (email != null) {
-			return this.userRepo.findByMail(email);
+			return this.userRepo.findByEmail(email);
 		}
 		return userRepo.findAll();
 	}
