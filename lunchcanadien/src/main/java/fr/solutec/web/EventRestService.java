@@ -29,11 +29,9 @@ public class EventRestService {
 	private EventRepository eventRepo;
 	
 	@Autowired
-<<<<<<< HEAD
 	private DemandeServices demandeServices;
-=======
 	private MailServices ms;
->>>>>>> branch 'master' of https://github.com/M0ssgreen/lunchcanadienbackend
+
 	
 	@RequestMapping(value="/events", method=RequestMethod.GET)
 	public List<Event> getEvents(){
@@ -48,14 +46,9 @@ public class EventRestService {
 	
 	@RequestMapping(value="/events", method=RequestMethod.POST)
 	public void saveEvent(@RequestBody Demande d){
-<<<<<<< HEAD
 
-		DemandeServices demandeS = new DemandeServices();
-		demandeS.matchEvent(d);
-
-=======
 		this.demandeServices.matchEvent(d);
->>>>>>> branch 'master' of https://github.com/M0ssgreen/lunchcanadienbackend.git
+
 		
 	}
 	
