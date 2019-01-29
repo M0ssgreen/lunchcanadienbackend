@@ -1,4 +1,4 @@
-package fr.solutec.email;
+package fr.solutec.services;
 
 import java.io.IOException;
 import java.util.List;

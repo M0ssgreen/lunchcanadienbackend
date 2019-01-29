@@ -30,6 +30,7 @@ public class Adresse extends Base {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
+	
 	public String getRue() {
 		return rue;
 	}

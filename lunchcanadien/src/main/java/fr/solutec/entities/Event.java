@@ -23,6 +23,7 @@ public class Event extends Base {
 	private Instant quantieme;
 	private String nom;
 	private int statut;
+	private String resto;
 	
 	
 	
@@ -32,11 +33,12 @@ public class Event extends Base {
 	
 	
 	
-	public Event(Instant quantieme, String nom, int statut) {
+	public Event(Instant quantieme, String nom, int statut, String resto) {
 		super();
 		this.quantieme = quantieme;
 		this.nom = nom;
 		this.statut = statut;
+		this.resto = resto;
 	}
 
 
@@ -58,6 +60,12 @@ public class Event extends Base {
 	}
 	public void setStatut(int statut) {
 		this.statut = statut;
+	}
+	public String getResto() {
+		return resto;
+	}
+	public void setResto(String resto) {
+		this.resto = resto;
 	}
 	
 	

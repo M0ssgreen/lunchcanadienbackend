@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.solutec.dao.EventRepository;
 import fr.solutec.web.DemandeRestService;
 import fr.solutec.dao.UserRepository;
-import fr.solutec.email.MailServices;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 
 import fr.solutec.services.EventServices;
+import fr.solutec.services.MailServices;
 import fr.solutec.services.DemandeServices;
 
 @RestController
