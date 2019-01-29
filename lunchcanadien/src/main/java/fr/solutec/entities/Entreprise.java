@@ -15,7 +15,7 @@ public class Entreprise extends Base{
 	
 	private String nom;
 	@Column (name="EMAIL_RH")
-	private String emailRh;
+	private User respoBonheur;
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_ADRESSE")
     private Adresse adresse;
@@ -27,10 +27,10 @@ public class Entreprise extends Base{
 		super(id, creation, maj);
 		// TODO Auto-generated constructor stub
 	}
-	public Entreprise(String nom, String emailRh, Adresse adresse) {
+	public Entreprise(String nom, User respoBonheur, Adresse adresse) {
 		super();
 		this.nom = nom;
-		this.emailRh = emailRh;
+		this.respoBonheur = respoBonheur;
 		this.adresse = adresse;
 	}
 	public String getNom() {
@@ -39,11 +39,11 @@ public class Entreprise extends Base{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getEmailRh() {
-		return emailRh;
+	public User getRespoBonheur() {
+		return respoBonheur;
 	}
-	public void setEmailRh(String emailRh) {
-		this.emailRh = emailRh;
+	public void setRespoBonheur(User respoBonheur) {
+		this.respoBonheur = respoBonheur;
 	}
 	public Adresse getAdresse() {
 		return adresse;
