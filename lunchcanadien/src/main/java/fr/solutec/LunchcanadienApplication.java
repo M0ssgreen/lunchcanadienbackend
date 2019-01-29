@@ -2,23 +2,16 @@ package fr.solutec;
 
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import fr.solutec.dao.DemandeRepository;
-import fr.solutec.dao.EventRepository;
-import fr.solutec.dao.UserRepository;
-import fr.solutec.entities.Demande;
-import fr.solutec.entities.Event;
-import fr.solutec.entities.User;
 @Configuration
-@EnableAutoConfiguration
+@EntityScan(basePackages = "fr.solutec.entities") 
 @EnableJpaRepositories(basePackages = "fr.solutec.dao")
 @ComponentScan(basePackages = {"fr.solutec.services", "fr.solutec.web"})
 @SpringBootApplication

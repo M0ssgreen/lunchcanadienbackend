@@ -27,8 +27,6 @@ import fr.solutec.services.DemandeServices;
 public class EventRestService {
 	@Autowired
 	private EventRepository eventRepo;
-	
-	@Autowired
 	private DemandeServices demandeServices;
 	private MailServices ms;
 
@@ -79,7 +77,7 @@ public class EventRestService {
 	
 	@RequestMapping(value="/events/{id}", method=RequestMethod.PUT)
 	public Event modifEvent(@PathVariable Long id, @RequestBody Event e){
-		 e.setIdEvent(id);
+		 e.setId(id);
 		 return eventRepo.save(e);
 	}
 	

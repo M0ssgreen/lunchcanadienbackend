@@ -1,6 +1,7 @@
 package fr.solutec.entities;
 
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -13,47 +14,51 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 @Entity
-public class Event {
-	@Id @GeneratedValue
-	private Long idEvent;
-	@CreationTimestamp
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private Date date;
-	@OneToMany
-	private List<Demande> demande;
+@Table(name = "EVENEMENT")
+public class Event extends Base {
+
+	private Instant quantieme;
+	private String nom;
+	private int statut;
+	
+	
 	
 	public Event() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Event(Long idEvent, Date date, List<Demande> demande) {
+	
+	
+	
+	public Event(Instant quantieme, String nom, int statut) {
 		super();
-		this.idEvent = idEvent;
-		this.date = date;
-		this.demande = demande;
+		this.quantieme = quantieme;
+		this.nom = nom;
+		this.statut = statut;
 	}
-	public Long getIdEvent() {
-		return idEvent;
+
+
+
+	public Instant getQuantieme() {
+		return quantieme;
 	}
-	public void setIdEvent(Long idEvent) {
-		this.idEvent = idEvent;
+	public void setQuantieme(Instant quantiemE) {
+		this.quantieme = quantiemE;
 	}
-	public Date getDate() {
-		return date;
+	public String getNom() {
+		return nom;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
-	public List<Demande> getDemande() {
-		return demande;
+	public int getStatut() {
+		return statut;
 	}
-	public void setDemande(List<Demande> demande) {
-		this.demande = demande;
+	public void setStatut(int statut) {
+		this.statut = statut;
 	}
-	
-	
-	
 	
 	
 

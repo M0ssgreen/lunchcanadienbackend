@@ -28,7 +28,7 @@ public class EventServices {
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
-				eventFromMail.add(eventRepository.findOne(demande.getEvent().getIdEvent()));
+				eventFromMail.add(eventRepository.findOne(demande.getEvent().getId()));
 			}
 		}
 		return eventFromMail;
