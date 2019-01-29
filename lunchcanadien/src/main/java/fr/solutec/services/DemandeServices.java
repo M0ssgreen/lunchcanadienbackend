@@ -67,5 +67,9 @@ public class DemandeServices {
 		List<Demande> lstDemande = demandeRepository.findByEvent(event);
 		return lstDemande.size();
 	}
+	public List<Demande> getDemandesByEvent(Event event){
+		List<Demande> lstDemande = demandeRepository.findByEvent(event);
+		return lstDemande;
+	}
 	
 }
