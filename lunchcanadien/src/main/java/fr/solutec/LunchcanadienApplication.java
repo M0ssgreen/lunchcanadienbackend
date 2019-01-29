@@ -15,6 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "fr.solutec.dao")
 @ComponentScan(basePackages = {"fr.solutec.services", "fr.solutec.web"})
 @SpringBootApplication
+
 public class LunchcanadienApplication {
 	
 	

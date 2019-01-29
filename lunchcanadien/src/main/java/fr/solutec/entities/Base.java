@@ -13,7 +13,7 @@ public class Base {
     @Column(name="ID", unique = true, nullable = false)
     private Long id;
 
-    //@JsonIgnore
+    @JsonIgnore
     @UpdateTimestamp
     @Column(nullable = false)
     private Instant creation;
