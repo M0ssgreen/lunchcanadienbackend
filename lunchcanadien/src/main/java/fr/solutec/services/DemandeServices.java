@@ -49,7 +49,7 @@ public class DemandeServices {
 			users.remove(0);
 		}
 		if (nombreParticipant(events.get(0))==3) {
-			mailServices.envMailOrganisateur(users.get(0).getEntreprise().getRespoBonheur(), events.get(0));
+			mailServices.envMailOrganisateur(users.get(0).getEntreprise().getUser(), events.get(0));
 		}
 		if ((nombreParticipant(events.get(0))>=4) && (events.get(0).getStatut()==1)) {
 			mailServices.envMailGroupe(users);
