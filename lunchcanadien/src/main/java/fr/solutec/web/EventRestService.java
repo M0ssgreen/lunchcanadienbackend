@@ -9,28 +9,42 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.dao.EventRepository;
 import fr.solutec.web.DemandeRestService;
 import fr.solutec.dao.UserRepository;
-import fr.solutec.email.MailServices;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 
 import fr.solutec.services.EventServices;
+import fr.solutec.services.MailServices;
 import fr.solutec.services.DemandeServices;
 
 @RestController
 @CrossOrigin("*")
 public class EventRestService {
 	@Autowired
+	private MailServices ms;
+	private EventServices eventServices;
 	private EventRepository eventRepo;
 	@Autowired
 	private DemandeServices demandeServices;
 
 	
+	@Autowired
+	public EventRestService(EventRepository eventRepo, DemandeServices demandeServices, MailServices ms,
+			EventServices eventServices) {
+		super();
+		this.eventRepo = eventRepo;
+		this.demandeServices = demandeServices;
+		this.ms = ms;
+		this.eventServices = eventServices;
+	}
+
+
 	@RequestMapping(value="/events", method=RequestMethod.GET)
 	public List<Event> getEvents(){
 		return this.eventRepo.findAll();
@@ -68,10 +82,11 @@ public class EventRestService {
 		return eventRepo.findById(id).get();
 	}
 	
-	@RequestMapping(value="/eventvalide/{mail}", method=RequestMethod.GET)
-	public List<Event> getEventByMail(@PathVariable String mail){
-		EventServices eventServices = new EventServices();
-		return eventServices.eventByMail(mail);
+	@RequestMapping(value="/eventvalide", method=RequestMethod.GET)
+	public List<Event> getEventByMail(@RequestParam("email") String email){
+		
+			return this.eventServices.eventByMail(email);
+		
 	}
 	
 	
