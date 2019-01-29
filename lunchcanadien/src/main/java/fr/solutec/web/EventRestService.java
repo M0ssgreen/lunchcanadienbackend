@@ -27,6 +27,7 @@ import fr.solutec.services.DemandeServices;
 public class EventRestService {
 	@Autowired
 	private EventRepository eventRepo;
+	@Autowired
 	private DemandeServices demandeServices;
 
 	
@@ -51,7 +52,7 @@ public class EventRestService {
 	@RequestMapping(value="/events/{id}",method=RequestMethod.DELETE)
 	public boolean suppUser(@PathVariable Long id) {
 		
-		//eventRepo.delete(id);
+		eventRepo.deleteById(id);
 		return true;
 	}
 	
