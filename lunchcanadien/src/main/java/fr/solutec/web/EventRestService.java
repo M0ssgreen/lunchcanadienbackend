@@ -26,10 +26,12 @@ import fr.solutec.services.DemandeServices;
 @RestController
 @CrossOrigin("*")
 public class EventRestService {
+	@Autowired
 	private EventRepository eventRepo;
 	private DemandeServices demandeServices;
 	private MailServices ms;
 	private EventServices eventServices;
+
 	
 	@Autowired
 	public EventRestService(EventRepository eventRepo, DemandeServices demandeServices, MailServices ms,
@@ -55,7 +57,9 @@ public class EventRestService {
 	
 	@RequestMapping(value="/events", method=RequestMethod.POST)
 	public void saveEvent(@RequestBody Demande d){
+
 		this.demandeServices.matchEvent(d);
+
 		
 	}
 	
@@ -86,7 +90,7 @@ public class EventRestService {
 	
 	@RequestMapping(value="/events/{id}", method=RequestMethod.PUT)
 	public Event modifEvent(@PathVariable Long id, @RequestBody Event e){
-		 e.setIdEvent(id);
+		 e.setId(id);
 		 return eventRepo.save(e);
 	}
 	

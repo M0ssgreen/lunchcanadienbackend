@@ -9,7 +9,7 @@ import fr.solutec.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-
 	List<User> findByMail(String mail);
+
 
 }
