@@ -1,4 +1,5 @@
 package fr.solutec.services;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class EventServices {
 	private UserRepository userRepository;
 	
 	public List<Event> eventByMail(String mail){
-		List<Event> eventFromMail = eventRepository.findAll();
+		List<Event> eventFromMail = new ArrayList();
 		List<Demande> demandeAll = demandes.findAll();
 		User user = userRepository.findByMail(mail).get(0);
 		

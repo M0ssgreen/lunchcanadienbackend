@@ -26,14 +26,22 @@ import fr.solutec.services.DemandeServices;
 @RestController
 @CrossOrigin("*")
 public class EventRestService {
-	@Autowired
 	private EventRepository eventRepo;
-	
-	@Autowired
 	private DemandeServices demandeServices;
-	@Autowired
 	private MailServices ms;
+	private EventServices eventServices;
 	
+	@Autowired
+	public EventRestService(EventRepository eventRepo, DemandeServices demandeServices, MailServices ms,
+			EventServices eventServices) {
+		super();
+		this.eventRepo = eventRepo;
+		this.demandeServices = demandeServices;
+		this.ms = ms;
+		this.eventServices = eventServices;
+	}
+
+
 	@RequestMapping(value="/events", method=RequestMethod.GET)
 	public List<Event> getEvents(){
 		return this.eventRepo.findAll();
@@ -89,11 +97,9 @@ public class EventRestService {
 	
 	@RequestMapping(value="/eventvalide", method=RequestMethod.GET)
 	public List<Event> getEventByMail(@RequestParam("email") String email){
-		if (email != null) {
-		EventServices eventServices = new EventServices();
-		return eventServices.eventByMail(email);
-		}
-		return eventRepo.findAll();
+		
+			return this.eventServices.eventByMail(email);
+		
 	}
 	
 	
