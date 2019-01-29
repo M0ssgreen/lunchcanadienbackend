@@ -68,5 +68,20 @@ public class EventServices {
 		e.setAdresse(a);
 		return eventRepository.save(e);
 	}
+	
+	public List<User> getEventUsers(Long idEvent) {
+		List<User> users = new ArrayList();
+		List<Demande> demandeAll = demandes.findAll();
+		
+		for (Demande demande : demandeAll) {
+			
+			if (demande.getEvent().getId()==idEvent) {
+				users.add(demande.getUser());
+			}else {System.out.println("pas de match");}
+			
+		}
+		
+		return users;
+	}
 
 }
