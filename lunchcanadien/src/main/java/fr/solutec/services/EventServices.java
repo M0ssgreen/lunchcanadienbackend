@@ -1,4 +1,5 @@
 package fr.solutec.services;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -28,13 +29,13 @@ public class EventServices {
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
-				eventFromMail.add(eventRepository.findOne(demande.getEvent().getIdEvent()));
+				eventFromMail.add(eventRepository.findOne(demande.getEvent().getId()));
 			}
 		}
 		return eventFromMail;
 	}
 	
-	public List<Event> getIdByDate(Date dateEvent) {
+	public List<Event> getIdByDate(Instant dateEvent) {
 		/*List<Event> listEvent = eventRepository.findAll();
 		Event retour = null;
 		for (Event event : listEvent) {

@@ -1,9 +1,5 @@
-package com.ams.back.entites;
+package fr.solutec.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -26,4 +22,49 @@ public class Base {
     @UpdateTimestamp
     @Column(nullable = false)
     private Instant maj;
+
+    
+    
+	public Base() {
+		super();
+	}
+	
+	
+
+	public Base(Long id, Instant creation, Instant maj) {
+		super();
+		this.id = id;
+		this.creation = creation;
+		this.maj = maj;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Instant getCreation() {
+		return creation;
+	}
+
+	public void setCreation(Instant creation) {
+		this.creation = creation;
+	}
+
+	public Instant getMaj() {
+		return maj;
+	}
+
+	public void setMaj(Instant maj) {
+		this.maj = maj;
+	}
+    
+    
 }
+
+

@@ -2,6 +2,7 @@ package fr.solutec.entities;
 
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,17 +20,17 @@ public class Demande {
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(cascade = {MERGE, DETACH})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_UTILISATEUR")
     private User user;
 
-    @ManyToOne(cascade = {MERGE, DETACH})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_EVENEMENT")
     private Event event;
 	
 	public Demande() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Demande(Event event, User user) {
 		super();
