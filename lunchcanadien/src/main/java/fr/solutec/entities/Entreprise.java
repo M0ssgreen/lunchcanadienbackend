@@ -14,8 +14,11 @@ import javax.persistence.Table;
 public class Entreprise extends Base{
 	
 	private String nom;
-	@Column (name="RESPOBONHEUR")
-	private User respoBonheur;
+
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "ID_UTILISATEUR")
+	private User user;
+
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_ADRESSE")
     private Adresse adresse;
@@ -27,10 +30,10 @@ public class Entreprise extends Base{
 		super(id, creation, maj);
 		// TODO Auto-generated constructor stub
 	}
-	public Entreprise(String nom, User respoBonheur, Adresse adresse) {
+	public Entreprise(String nom, User user, Adresse adresse) {
 		super();
 		this.nom = nom;
-		this.respoBonheur = respoBonheur;
+		this.user = user;
 		this.adresse = adresse;
 	}
 	public String getNom() {
@@ -39,11 +42,11 @@ public class Entreprise extends Base{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public User getRespoBonheur() {
-		return respoBonheur;
+	public User getUser() {
+		return user;
 	}
-	public void setRespoBonheur(User respoBonheur) {
-		this.respoBonheur = respoBonheur;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public Adresse getAdresse() {
 		return adresse;
