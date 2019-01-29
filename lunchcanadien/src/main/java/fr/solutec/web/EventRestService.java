@@ -52,7 +52,7 @@ public class EventRestService {
 	@RequestMapping(value="/events/{id}",method=RequestMethod.DELETE)
 	public boolean suppUser(@PathVariable Long id) {
 		
-		//eventRepo.delete(id);
+		eventRepo.deleteById(id);
 		return true;
 	}
 	

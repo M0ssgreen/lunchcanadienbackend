@@ -19,9 +19,10 @@ public class UserServices {
 	@Autowired
 	private UserRepository userRepo;
 	
-	
+
 	public List<User> getByMail(String email) {
 		return this.userRepo.findByEmail(email);		
+
 	}
 	
 	public User createUser(User user) {
