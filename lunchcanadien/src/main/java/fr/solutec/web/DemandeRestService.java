@@ -52,7 +52,7 @@ public class DemandeRestService {
 	@RequestMapping(value="/avis", method=RequestMethod.PUT)
 	public void saveComment(@RequestBody Demande d, String email, Long idEvent ) {
 		
-		demandeRepository.save(d);
+		demandeServices.saveCommentByMail(d, email, idEvent);
 	}
 	
 	/**
