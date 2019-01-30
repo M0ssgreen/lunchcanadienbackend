@@ -28,8 +28,9 @@ public class EventServices {
 	@Autowired
 	private AdresseRepository adresseRepository;
 
-	
+	@Autowired
 	private AdresseServices adresseServices;
+	@Autowired
 	private MailServices mailServices;
 	private UserServices userServices;
 
@@ -70,6 +71,7 @@ public class EventServices {
 		Boolean boolVerif = false;
 		events.add(eventRepository.findById(event.getId()).get());
 		events.get(0).setResto(event.getResto());
+		adresses= adresseServices.getAllAdresse();
 		for (Adresse a:adresses) {
 			if (a.getNumero()==adresse.getNumero() && a.getRue()==adresse.getRue() && a.getCodePostal()==adresse.getCodePostal() && a.getVille()==adresse.getVille()) {
 				adresseVerif=a;
@@ -79,7 +81,13 @@ public class EventServices {
 			
 		}
 		if (boolVerif == false) {
-			adresseVerif=adresseServices.createAdresse(adresse);
+			adresseServices.createAdresse(adresse);
+			adresses= adresseServices.getAllAdresse();
+			for (Adresse a:adresses) {
+				if (a.getNumero()==adresse.getNumero() && a.getRue()==adresse.getRue() && a.getCodePostal()==adresse.getCodePostal() && a.getVille()==adresse.getVille()) {
+					adresseVerif=a;		
+				}
+			}
 		}
 		events.get(0).setAdresse(adresseVerif);
 		eventRepository.save(events.get(0));

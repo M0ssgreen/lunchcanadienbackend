@@ -18,6 +18,7 @@ import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Adresse;
 import fr.solutec.entities.Demande;
 import fr.solutec.entities.Event;
+import fr.solutec.entities.JoinAdresseEvent;
 import fr.solutec.entities.User;
 
 import fr.solutec.services.EventServices;
@@ -108,9 +109,9 @@ public class EventRestService {
 		return eventsresult;
 	}*/
 	@RequestMapping(value="/event/resto", method=RequestMethod.PUT)
-	public void ajoutResto(@RequestBody Event event){
+	public void ajoutResto(@RequestBody JoinAdresseEvent join){
 		
-		this.eventServices.validationRh(event.getAdresse(), event);
+		this.eventServices.validationRh(join.getAdresse(), join.getEvent());
 		
 	}
 	
