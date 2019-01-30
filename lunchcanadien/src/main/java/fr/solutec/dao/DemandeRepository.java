@@ -11,5 +11,6 @@ import fr.solutec.entities.Event;
 public interface DemandeRepository extends JpaRepository<Demande, Long> {
 	List<Demande> findByEvent(Event event);
 	List<Demande> findByEventId(Long eventId);
+	List<Demande> findByUserId(Long userId);
 }
 

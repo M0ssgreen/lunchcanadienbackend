@@ -27,6 +27,9 @@ public class Demande {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_EVENEMENT")
     private Event event;
+    
+    private int note;
+    private String commentaire;
 	
 	public Demande() {
 		super();
@@ -36,6 +39,27 @@ public class Demande {
 		super();
 		this.event = event;
 		this.user = user;
+	}
+	
+	public int getNote() {
+		return note;
+	}
+	public void setNote(int note) {
+		this.note = note;
+	}
+	public String getCommentaire() {
+		return commentaire;
+	}
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+	public Demande(Long id, User user, Event event, int note, String commentaire) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.event = event;
+		this.note = note;
+		this.commentaire = commentaire;
 	}
 	public Event getEvent() {
 		return event;
