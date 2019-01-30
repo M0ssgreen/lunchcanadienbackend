@@ -35,6 +35,12 @@ public class Demande {
 		super();
 		
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Demande(Event event, User user) {
 		super();
 		this.event = event;

@@ -18,6 +18,7 @@ import fr.solutec.dao.DemandeRepository;
 
 @Service
 public class DemandeServices {
+	@Autowired
 	private DemandeRepository demandeRepository;
 	private EventServices eventServices;
 	private UserServices userServices;
@@ -91,11 +92,23 @@ public class DemandeServices {
 	public List<Demande> listeEnfonctionDeLeventId(Long eventId) {
 		return this.demandeRepository.findByEventId(eventId);
 	}
-	public void saveCommentByMail(Demande d, String email, Long idEvent) {
+	public Demande getDemandeBy(String email, Long idEv) {
+		List<Demande> lstDem = demandeRepository.findAll();
+		while (!(lstDem.get(0).getUser().getEmail().equals(email) && lstDem.get(0).getEvent().getId().equals(idEv))) {
+			lstDem.remove(0);
+		}
+		
+		return lstDem.get(0);
+	}
 	
+	public Demande saveComment(Demande d) {
+		List<Demande> lstDemande= new ArrayList();
+		lstDemande.add(getDemandeBy(d.getUser().getEmail(), d.getEvent().getId()));
+		lstDemande.get(0).setCommentaire(d.getCommentaire());
+		lstDemande.get(0).setNote(d.getNote());
 		
 		
-		demandeRepository.save(d);
+		return demandeRepository.save(lstDemande.get(0));
 	}
 
 	
