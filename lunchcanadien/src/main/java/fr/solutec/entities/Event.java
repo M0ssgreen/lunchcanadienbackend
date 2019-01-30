@@ -76,7 +76,7 @@ public class Event extends Base {
 	}
 
 	public void setAdresse(Adresse adresse) {
-		adresse = adresse;
+		this.adresse = adresse;
 	}
 
 }
