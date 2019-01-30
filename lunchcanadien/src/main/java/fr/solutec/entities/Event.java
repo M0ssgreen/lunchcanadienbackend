@@ -29,7 +29,7 @@ public class Event extends Base {
 	private String resto;
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_ADRESSE")
-    private Adresse Adresse;
+    private Adresse adresse;
 	
 	
 	
@@ -43,7 +43,7 @@ public class Event extends Base {
 		this.nom = nom;
 		this.statut = statut;
 		this.resto = resto;
-		Adresse = adresse;
+		adresse = adresse;
 	}
 
 	public Instant getQuantieme() {
@@ -72,11 +72,12 @@ public class Event extends Base {
 	}
 
 	public Adresse getAdresse() {
-		return Adresse;
+		return adresse;
 	}
 
 	public void setAdresse(Adresse adresse) {
-		this.Adresse = adresse;
+
+		this.adresse = adresse;
 	}
 
 }

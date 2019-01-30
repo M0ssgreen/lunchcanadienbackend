@@ -38,6 +38,8 @@ public class DemandeRestService {
 
 	@Autowired
 	private DemandeServices demandeServices;
+	@Autowired
+	private DemandeRepository demandeRepository;
 	
 	@GetMapping
 	public List<Demande> getUsers(@RequestParam("eventId") Long eventId){
@@ -46,6 +48,12 @@ public class DemandeRestService {
 		}
 		return this.demandeServices.liste();
 	}
+	
+	@RequestMapping(value="/avis", method=RequestMethod.PUT)
+	public void saveEvent(@RequestBody Demande d) {
+		demandeRepository.save(d);
+	}
+	
 	/**
 	@Autowired
 	private DemandeRepository demandeRepo;
