@@ -29,6 +29,11 @@ public class EventServices {
 	private AdresseRepository adresseRepository;
 
 	
+	private AdresseServices adresseServices;
+	private MailServices mailServices;
+	private UserServices userServices;
+
+	
 	public List<Event> eventByMail(String email){
 		List<Event> eventFromMail = new ArrayList();
 
@@ -54,6 +59,33 @@ public class EventServices {
 		}
 		return retour;*/
 		return eventRepository.findByQuantieme(dateEvent);
+	}
+	
+	public void validationRh(Adresse adresse, Event event) {
+		List<Event> events = new ArrayList();
+		List<Adresse> adresses = new ArrayList();
+		List<User> users = new ArrayList();
+		Adresse adresseVerif=adresse;
+		
+		Boolean boolVerif = false;
+		events.add(eventRepository.findById(event.getId()).get());
+		events.get(0).setResto(event.getResto());
+		for (Adresse a:adresses) {
+			if (a.getNumero()==adresse.getNumero() && a.getRue()==adresse.getRue() && a.getCodePostal()==adresse.getCodePostal() && a.getVille()==adresse.getVille()) {
+				adresseVerif=a;
+				boolVerif = true;		
+			}
+			
+			
+		}
+		if (boolVerif == false) {
+			adresseVerif=adresseServices.createAdresse(adresse);
+		}
+		events.get(0).setAdresse(adresseVerif);
+		eventRepository.save(events.get(0));
+		users = getEventUsers(events.get(0).getId());
+		mailServices.envMailGroupe(users);
+		
 	}
 	
 	public Event createEvent(Event event) {
