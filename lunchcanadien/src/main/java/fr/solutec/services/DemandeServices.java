@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.solutec.entities.Demande;
+import fr.solutec.entities.Entreprise;
 import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 import fr.solutec.services.EventServices;
@@ -38,7 +39,9 @@ public class DemandeServices {
 		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
 		
 		if (users.isEmpty()) {
-
+			Entreprise entreprise = new Entreprise();
+			entreprise.setId(101L);
+			demande.getUser().setEntreprise(entreprise);
 			users.add(this.userServices.createUser(demande.getUser()));
 		}
 				
@@ -49,15 +52,16 @@ public class DemandeServices {
 		while (nombreParticipant(events.get(0))>=6) {
 			users.remove(0);
 		}
+		this.demandeRepository.save(new Demande(events.get(0), users.get(0)));
 		mailServices.envMail(users.get(0));
-		if (nombreParticipant(events.get(0))==2) {
+		if (nombreParticipant(events.get(0))==3) {
 			mailServices.envMailOrganisateur(users.get(0).getEntreprise().getUser(), events.get(0));
 		}
-		if ((nombreParticipant(events.get(0))>=3) && (events.get(0).getStatut()==1)) {
+		if ((nombreParticipant(events.get(0))>=4) && (events.get(0).getStatut()==1)) {
 			mailServices.envMailGroupe(users);
 		}
 		
-		this.demandeRepository.save(new Demande(events.get(0), users.get(0)));
+		
 		
 	}
 

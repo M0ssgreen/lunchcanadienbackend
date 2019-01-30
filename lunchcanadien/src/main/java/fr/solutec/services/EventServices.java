@@ -73,7 +73,7 @@ public class EventServices {
 		events.get(0).setResto(event.getResto());
 		adresses= adresseServices.getAllAdresse();
 		for (Adresse a:adresses) {
-			if (a.getNumero()==adresse.getNumero() && a.getRue()==adresse.getRue() && a.getCodePostal()==adresse.getCodePostal() && a.getVille()==adresse.getVille()) {
+			if (a.getNumero().equals(adresse.getNumero()) && a.getRue().equals(adresse.getRue()) && a.getCodePostal().equals(adresse.getCodePostal()) && a.getVille().equals(adresse.getVille())) {
 				adresseVerif=a;
 				boolVerif = true;		
 			}
@@ -84,11 +84,12 @@ public class EventServices {
 			adresseServices.createAdresse(adresse);
 			adresses= adresseServices.getAllAdresse();
 			for (Adresse a:adresses) {
-				if (a.getNumero()==adresse.getNumero() && a.getRue()==adresse.getRue() && a.getCodePostal()==adresse.getCodePostal() && a.getVille()==adresse.getVille()) {
+				if (a.getNumero().equals(adresse.getNumero()) && a.getRue().equals(adresse.getRue()) && a.getCodePostal().equals(adresse.getCodePostal()) && a.getVille().equals(adresse.getVille())) {
 					adresseVerif=a;		
 				}
 			}
 		}
+		events.get(0).setStatut(1);
 		events.get(0).setAdresse(adresseVerif);
 		eventRepository.save(events.get(0));
 		users = getEventUsers(events.get(0).getId());
@@ -106,7 +107,6 @@ public class EventServices {
 		e.setResto(resto);
 		Adresse a = adresseRepository.findById(idAdresse).get();
 		e.setAdresse(a);
-		e.setStatut(1);
 		return eventRepository.save(e);
 	}
 	
