@@ -106,6 +106,7 @@ public class EventServices {
 		e.setResto(resto);
 		Adresse a = adresseRepository.findById(idAdresse).get();
 		e.setAdresse(a);
+		e.setStatut(1);
 		return eventRepository.save(e);
 	}
 	
