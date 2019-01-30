@@ -107,10 +107,13 @@ public class EventRestService {
 		
 		return eventsresult;
 	}*/
-	@RequestMapping(value="/event/{idEvent}/resto/{idAdresse}", method=RequestMethod.PUT)
-	public Event ajoutResto(@PathVariable Long idEvent, @PathVariable Long idAdresse, @RequestBody String resto){
-		Event e = eventServices.setRestoEvent(idEvent, resto, idAdresse);
-		 return e;
+	@RequestMapping(value="/event/{idEvent}/resto", method=RequestMethod.PUT)
+	public void ajoutResto(@PathVariable Long idEvent, Adresse adresse, @RequestBody String resto){
+		Event event = new Event();
+		event.setResto(resto);
+		event.setId(idEvent);
+		this.eventServices.validationRh(adresse, event);
+		
 	}
 	
 }
