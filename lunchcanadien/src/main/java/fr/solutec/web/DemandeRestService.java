@@ -50,7 +50,8 @@ public class DemandeRestService {
 	}
 	
 	@RequestMapping(value="/avis", method=RequestMethod.PUT)
-	public void saveEvent(@RequestBody Demande d) {
+	public void saveComment(@RequestBody Demande d, String email, Long idEvent ) {
+		
 		demandeRepository.save(d);
 	}
 	
