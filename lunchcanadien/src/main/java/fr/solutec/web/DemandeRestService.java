@@ -5,16 +5,20 @@ import java.util.List;
 //test
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.solutec.dao.DemandeRepository;
 import fr.solutec.dao.EventRepository;
 import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Demande;
+import fr.solutec.entities.User;
+import fr.solutec.services.DemandeServices;
 
 import java.util.List;
 
@@ -28,7 +32,20 @@ import fr.solutec.entities.Demande;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping(value="/demandes")
 public class DemandeRestService {
+	
+
+	@Autowired
+	private DemandeServices demandeServices;
+	
+	@GetMapping
+	public List<Demande> getUsers(@RequestParam("eventId") Long eventId){
+		if (eventId != null) {
+			return this.demandeServices.listeEnfonctionDeLeventId(eventId);
+		}
+		return this.demandeServices.liste();
+	}
 	/**
 	@Autowired
 	private DemandeRepository demandeRepo;

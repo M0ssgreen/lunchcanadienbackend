@@ -9,16 +9,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name= "ENTREPRISE")
 public class Entreprise extends Base{
 	
-	private String nom;
-
+	private String nom;	
+	
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_UTILISATEUR")
 	private User user;
-
+	
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_ADRESSE")
     private Adresse adresse;
