@@ -91,7 +91,12 @@ public class DemandeServices {
 	public List<Demande> listeEnfonctionDeLeventId(Long eventId) {
 		return this.demandeRepository.findByEventId(eventId);
 	}
+	public void saveCommentByMail(Demande d, String email, Long idEvent) {
 	
+		
+		
+		demandeRepository.save(d);
+	}
 
 	
 }
