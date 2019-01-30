@@ -90,6 +90,11 @@ public class EventRestService {
 		
 	}
 	
+	@RequestMapping(value="/eventdetail/{id}", method=RequestMethod.GET)
+	public List<User> getEventDetailById(@PathVariable Long id){
+		
+		return  this.eventServices.getEventUsers(id);
+	}
 	
 	/*@RequestMapping(value="/eventnonvalid/all/{id}", method=RequestMethod.GET)
 	public List<Event> getEventByDemandes(@PathVariable Long id){

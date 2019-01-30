@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "EVENEMENT")
 public class Event extends Base {
-
+	//@JsonFormat(pattern = "yyyy-MM-dd")
 	private Instant quantieme;
 	private String nom;
 	private int statut;

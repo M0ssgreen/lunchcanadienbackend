@@ -22,20 +22,24 @@ public class EventServices {
 	@Autowired
 	private EventRepository eventRepository;
 	@Autowired
-	private DemandeRepository demandes;
+	private DemandeRepository demandeRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private AdresseRepository adresseRepository;
+
 	
 	private AdresseServices adresseServices;
 	private MailServices mailServices;
 	private UserServices userServices;
+
 	
-	public List<Event> eventByMail(String mail){
+	public List<Event> eventByMail(String email){
 		List<Event> eventFromMail = new ArrayList();
-		List<Demande> demandeAll = demandes.findAll();
-		User user = userRepository.findByEmail(mail).get(0);
+
+		List<Demande> demandeAll = this.demandeRepository.findAll();
+
+		User user = userRepository.findByEmail(email).get(0);
 		
 		for (Demande demande : demandeAll) {
 			if (demande.getUser().getId() == user.getId()) {
@@ -79,7 +83,7 @@ public class EventServices {
 		}
 		events.get(0).setAdresse(adresseVerif);
 		eventRepository.save(events.get(0));
-		users = userServices.getUserByEvent(events.get(0));
+		users = getEventUsers(events.get(0).getId());
 		mailServices.envMailGroupe(users);
 		
 	}
@@ -95,6 +99,16 @@ public class EventServices {
 		Adresse a = adresseRepository.findById(idAdresse).get();
 		e.setAdresse(a);
 		return eventRepository.save(e);
+	}
+	
+	public List<User> getEventUsers(Long idEvent) {
+		List<User> users = new ArrayList<User>();
+		List<Demande> demandeAll = this.demandeRepository.findByEventId(idEvent);
+		
+		for (Demande demande : demandeAll) {
+			users.add(demande.getUser());
+		}		
+		return users;
 	}
 
 }
