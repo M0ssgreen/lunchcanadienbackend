@@ -27,6 +27,7 @@ public class UserRestService {
 		}
 		return userRepo.findAll();
 	}
+	//bite
 	
 	@RequestMapping(value="/users/{id}", method=RequestMethod.GET)
 	public User getUser(@PathVariable Long id){
