@@ -70,7 +70,7 @@ public class MailServices {
 	 public void envMailOrganisateur(User user, Event event) {
 		 String sujet = "[LunchCanadien] Choix du restaurant";
 		 String Newligne=System.getProperty("line.separator");
-		 String contenu = "Bonjour " + user.getPrenom() + "," + Newligne + Newligne + "Un événement a matché." + Newligne + "Veuillez vous rendre sur le lunch pour choisir le lieu de rencontre." + Newligne + Newligne + "Bonne journée !" + Newligne + "Equipe LunchCanadien";
+		 String contenu = "Bonjour " + user.getPrenom() + "," + Newligne + Newligne + "Un événement a matché." + Newligne + "Veuillez vous rendre sur le lunch pour choisir le lieu de rencontre: http://localhost/CloneGithubLunch/lunchcanadien/lunchcanadien/choixresto.html?id="+ event.getId() + Newligne + Newligne + "Bonne journée !" + Newligne + "Equipe LunchCanadien";
 		 sendMail(user.getEmail(), sujet, contenu);
 	 }//ooo
 	 
