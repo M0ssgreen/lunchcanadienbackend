@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name= "ENTREPRISE")
 public class Entreprise extends Base{
 	
-	private String nom;
+	private String nom;	
 	
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "ID_UTILISATEUR")

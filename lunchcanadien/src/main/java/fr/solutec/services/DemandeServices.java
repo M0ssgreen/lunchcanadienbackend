@@ -23,10 +23,11 @@ public class DemandeServices {
 	
 	@Autowired
 	public DemandeServices(DemandeRepository demandeRepository, EventServices eventServices,
-			UserServices userServices) {
+			UserServices userServices, MailServices mailServices) {
 		super();
 		this.demandeRepository = demandeRepository;
 		this.eventServices = eventServices;
+		this.mailServices = mailServices;
 		this.userServices = userServices;
 	}
 
@@ -48,10 +49,11 @@ public class DemandeServices {
 		while (nombreParticipant(events.get(0))>=6) {
 			users.remove(0);
 		}
-		if (nombreParticipant(events.get(0))==3) {
+		mailServices.envMail(users.get(0));
+		if (nombreParticipant(events.get(0))==2) {
 			mailServices.envMailOrganisateur(users.get(0).getEntreprise().getUser(), events.get(0));
 		}
-		if ((nombreParticipant(events.get(0))>=4) && (events.get(0).getStatut()==1)) {
+		if ((nombreParticipant(events.get(0))>=3) && (events.get(0).getStatut()==1)) {
 			mailServices.envMailGroupe(users);
 		}
 		
