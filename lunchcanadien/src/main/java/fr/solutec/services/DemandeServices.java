@@ -16,6 +16,7 @@ import fr.solutec.entities.User;
 import fr.solutec.services.EventServices;
 import fr.solutec.services.UserServices;
 import fr.solutec.dao.DemandeRepository;
+import fr.solutec.dao.EntrepriseRepository;
 
 @Service
 public class DemandeServices {
@@ -24,6 +25,7 @@ public class DemandeServices {
 	private EventServices eventServices;
 	private UserServices userServices;
 	private MailServices mailServices;
+	private EntrepriseRepository entrepriseRepo;
 	
 	@Autowired
 	public DemandeServices(DemandeRepository demandeRepository, EventServices eventServices,
@@ -39,18 +41,19 @@ public class DemandeServices {
 		
 		List<User> users = this.userServices.getByMail(demande.getUser().getEmail());
 
-		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
+		List<Event> events  = eventServices.eventParEntreprise(this.eventServices.getIdByDate(demande.getEvent().getQuantieme()), users.get(0).getId());
 		
 		if (users.isEmpty()) {
+			
 			Entreprise entreprise = new Entreprise();
-			entreprise.setId(101L);
+			entreprise.setId(demande.getUser().getId());
 			demande.getUser().setEntreprise(entreprise);
 			demande.getUser().setId(null);
 			users.add(this.userServices.createUser(demande.getUser()));
 		}
 				
 		if (events.isEmpty()) {
-
+			demande.getEvent().setNom(null);
 			events.add(this.eventServices.createEvent(demande.getEvent()));
 		}
 		while (nombreParticipant(events.get(0))>=6) {

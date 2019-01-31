@@ -50,6 +50,21 @@ public class EventServices {
 		return eventFromMail;
 	}
 	
+	public Long idEntreprise(Event event) {
+		return demandeRepository.findById(event.getId()).get().getUser().getId();
+	}
+	
+	public List<Event> eventParEntreprise(List<Event> events, Long idEntreprise){
+		List<Event> eventsResult = new ArrayList();
+		for (Event e:events) {
+			if (idEntreprise(e)==idEntreprise) {
+				eventsResult.add(e);
+			}
+			
+		}
+		return eventsResult;
+	}
+	
 	public List<Event> getIdByDate(Instant dateEvent) {
 		/*List<Event> listEvent = eventRepository.findAll();
 		Event retour = null;
