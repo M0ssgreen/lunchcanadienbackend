@@ -56,6 +56,11 @@ public class DemandeRestService {
 		return demandeServices.saveComment(d);
 	}
 	
+	@RequestMapping(value="/demandesAll", method=RequestMethod.GET)
+	public List<Demande> getDemandes(){
+		return this.demandeRepository.findAll();
+	}
+	
 	
 	
 	/**
