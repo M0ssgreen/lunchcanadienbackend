@@ -43,7 +43,7 @@ public class DemandeServices {
 		
 		if (users.isEmpty()) {
 			Entreprise entreprise = new Entreprise();
-			entreprise.setId(101L);
+			entreprise.setId(demande.getUser().getId());
 			demande.getUser().setEntreprise(entreprise);
 			demande.getUser().setId(null);
 			users.add(this.userServices.createUser(demande.getUser()));
