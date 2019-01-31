@@ -111,12 +111,16 @@ public class EventServices {
 	}
 	
 	public List<User> getEventUsers(Long idEvent) {
+
 		List<User> users = new ArrayList<User>();
 		List<Demande> demandeAll = this.demandeRepository.findByEventId(idEvent);
+
 		
 		for (Demande demande : demandeAll) {
+
 			users.add(demande.getUser());
 		}		
+
 		return users;
 	}
 
