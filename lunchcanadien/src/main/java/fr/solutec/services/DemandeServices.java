@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import fr.solutec.entities.Demande;
@@ -34,8 +35,8 @@ public class DemandeServices {
 		this.userServices = userServices;
 	}
 
-	public void matchEvent(Demande demande) {		
-
+	public boolean matchEvent(Demande demande) {		
+		try {
 		List<User> users = this.userServices.getByMail(demande.getUser().getEmail());
 
 		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
@@ -54,11 +55,9 @@ public class DemandeServices {
 		while (nombreParticipant(events.get(0))>=6) {
 			users.remove(0);
 		}
-		//try {
+		
 		this.demandeRepository.save(new Demande(events.get(0), users.get(0)));
-		//} catch (SQLIntegrityConstraintViolationException e) {
-		//	System.out.println("disponiblités redondante");
-		//}
+		
 		mailServices.envMail(users.get(0));
 		if (nombreParticipant(events.get(0))==3) {
 			mailServices.envMailOrganisateur(users.get(0).getEntreprise().getUser(), events.get(0));
@@ -66,9 +65,12 @@ public class DemandeServices {
 		if ((nombreParticipant(events.get(0))>=4) && (events.get(0).getStatut()==1)) {
 			mailServices.envMailGroupe(users);
 		}
-		
-		
-		
+		return true;
+		} catch (DataIntegrityViolationException e) {
+			System.out.println("erreur redondance");
+			return false;
+		}
+	
 	}
 
 	public void createDemande(Demande demande) {
