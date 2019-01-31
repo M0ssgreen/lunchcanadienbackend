@@ -41,7 +41,7 @@ public class DemandeServices {
 		
 		List<User> users = this.userServices.getByMail(demande.getUser().getEmail());
 
-		List<Event> events  = eventServices.eventParEntreprise(this.eventServices.getIdByDate(demande.getEvent().getQuantieme()), users.get(0).getId());
+		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
 		
 		if (users.isEmpty()) {
 			
