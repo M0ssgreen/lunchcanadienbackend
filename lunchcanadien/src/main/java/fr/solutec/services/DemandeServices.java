@@ -35,8 +35,8 @@ public class DemandeServices {
 		this.userServices = userServices;
 	}
 
-	public boolean matchEvent(Demande demande) {		
-		try {
+	public void matchEvent(Demande demande) {		
+		
 		List<User> users = this.userServices.getByMail(demande.getUser().getEmail());
 
 		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
@@ -45,6 +45,7 @@ public class DemandeServices {
 			Entreprise entreprise = new Entreprise();
 			entreprise.setId(101L);
 			demande.getUser().setEntreprise(entreprise);
+			demande.getUser().setId(null);
 			users.add(this.userServices.createUser(demande.getUser()));
 		}
 				
@@ -53,7 +54,7 @@ public class DemandeServices {
 			events.add(this.eventServices.createEvent(demande.getEvent()));
 		}
 		while (nombreParticipant(events.get(0))>=6) {
-			users.remove(0);
+			events.remove(0);
 		}
 		
 		this.demandeRepository.save(new Demande(events.get(0), users.get(0)));
@@ -65,11 +66,7 @@ public class DemandeServices {
 		if ((nombreParticipant(events.get(0))>=4) && (events.get(0).getStatut()==1)) {
 			mailServices.envMailGroupe(users);
 		}
-		return true;
-		} catch (DataIntegrityViolationException e) {
-			System.out.println("erreur redondance");
-			return false;
-		}
+		
 	
 	}
 

@@ -59,9 +59,9 @@ public class EventRestService {
 	}*/
 	
 	@RequestMapping(value="/events", method=RequestMethod.POST)
-	public boolean saveEvent(@RequestBody Demande d){
+	public void saveEvent(@RequestBody Demande d){
 
-		return this.demandeServices.matchEvent(d);
+		this.demandeServices.matchEvent(d);
 	}
 	
 	
