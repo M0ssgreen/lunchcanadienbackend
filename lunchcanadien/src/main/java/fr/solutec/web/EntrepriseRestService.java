@@ -30,7 +30,7 @@ public class EntrepriseRestService {
 		return er.findById(id).get();
 	}
 	
-	@RequestMapping(value="/entreprise/{nom}", method=RequestMethod.GET)
+	@RequestMapping(value="/entreprisechoix/{nom}", method=RequestMethod.GET)
 	public Long getIdByEntreprise(@PathVariable String nom) {
 		return  er.findByNom(nom).get(0).getId();
 	}
