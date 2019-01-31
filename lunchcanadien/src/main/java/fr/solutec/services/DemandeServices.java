@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import fr.solutec.entities.Demande;
@@ -18,6 +19,7 @@ import fr.solutec.dao.DemandeRepository;
 
 @Service
 public class DemandeServices {
+	@Autowired
 	private DemandeRepository demandeRepository;
 	private EventServices eventServices;
 	private UserServices userServices;
@@ -33,8 +35,8 @@ public class DemandeServices {
 		this.userServices = userServices;
 	}
 
-	public void matchEvent(Demande demande) {		
-
+	public boolean matchEvent(Demande demande) {		
+		try {
 		List<User> users = this.userServices.getByMail(demande.getUser().getEmail());
 
 		List<Event> events  = this.eventServices.getIdByDate(demande.getEvent().getQuantieme());
@@ -53,11 +55,9 @@ public class DemandeServices {
 		while (nombreParticipant(events.get(0))>=6) {
 			users.remove(0);
 		}
-		//try {
+		
 		this.demandeRepository.save(new Demande(events.get(0), users.get(0)));
-		//} catch (SQLIntegrityConstraintViolationException e) {
-		//	System.out.println("disponiblités redondante");
-		//}
+		
 		mailServices.envMail(users.get(0));
 		if (nombreParticipant(events.get(0))==3) {
 			mailServices.envMailOrganisateur(users.get(0).getEntreprise().getUser(), events.get(0));
@@ -65,9 +65,12 @@ public class DemandeServices {
 		if ((nombreParticipant(events.get(0))>=4) && (events.get(0).getStatut()==1)) {
 			mailServices.envMailGroupe(users);
 		}
-		
-		
-		
+		return true;
+		} catch (DataIntegrityViolationException e) {
+			System.out.println("erreur redondance");
+			return false;
+		}
+	
 	}
 
 	public void createDemande(Demande demande) {
@@ -91,11 +94,23 @@ public class DemandeServices {
 	public List<Demande> listeEnfonctionDeLeventId(Long eventId) {
 		return this.demandeRepository.findByEventId(eventId);
 	}
-	public void saveCommentByMail(Demande d, String email, Long idEvent) {
+	public Demande getDemandeBy(String email, Long idEv) {
+		List<Demande> lstDem = demandeRepository.findAll();
+		while (!(lstDem.get(0).getUser().getEmail().equals(email) && lstDem.get(0).getEvent().getId().equals(idEv))) {
+			lstDem.remove(0);
+		}
+		
+		return lstDem.get(0);
+	}
 	
+	public Demande saveComment(Demande d) {
+		List<Demande> lstDemande= new ArrayList();
+		lstDemande.add(getDemandeBy(d.getUser().getEmail(), d.getEvent().getId()));
+		lstDemande.get(0).setCommentaire(d.getCommentaire());
+		lstDemande.get(0).setNote(d.getNote());
 		
 		
-		demandeRepository.save(d);
+		return demandeRepository.save(lstDemande.get(0));
 	}
 
 	

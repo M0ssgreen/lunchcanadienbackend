@@ -17,6 +17,7 @@ import fr.solutec.dao.DemandeRepository;
 import fr.solutec.dao.EventRepository;
 import fr.solutec.dao.UserRepository;
 import fr.solutec.entities.Demande;
+import fr.solutec.entities.Event;
 import fr.solutec.entities.User;
 import fr.solutec.services.DemandeServices;
 
@@ -50,10 +51,12 @@ public class DemandeRestService {
 	}
 	
 	@RequestMapping(value="/avis", method=RequestMethod.PUT)
-	public void saveComment(@RequestBody Demande d, String email, Long idEvent ) {
+	public Demande saveComment(@RequestBody Demande d) {
 		
-		demandeServices.saveCommentByMail(d, email, idEvent);
+		return demandeServices.saveComment(d);
 	}
+	
+	
 	
 	/**
 	@Autowired
